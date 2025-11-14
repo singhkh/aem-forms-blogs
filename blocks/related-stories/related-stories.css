@@ -39,12 +39,18 @@
   overflow: hidden;
 }
 
+.related-stories .story-image a {
+  display: block;
+  line-height: 0;
+}
+
 .related-stories .story-image::before {
   content: '';
   position: absolute;
   inset: 0;
   background: var(--gradient-card);
   z-index: 1;
+  pointer-events: none;
 }
 
 .related-stories > ul > li img {

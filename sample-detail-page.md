@@ -166,8 +166,7 @@ For complete details, see the [Universal Editor for Edge Delivery Services for F
 
 ## Related Stories
 
-| ![Content Fragments](/assets/blog/content-fragments.png) | ## Building Scalable Content with AEM Fragments | Learn how to create reusable content components that scale across your entire digital ecosystem. | Oct 28, 2025 * Sarah Chen |
-| ![Headless Forms](/assets/blog/headless-forms.png) | ## Going Headless: Forms for Modern Web Apps | Explore how headless forms enable omnichannel experiences while maintaining enterprise-grade functionality. | Oct 15, 2025 * Michael Torres |
-| ![Form Analytics](/assets/blog/analytics.png) | ## Mastering Form Analytics in Adobe Experience Platform | Deep dive into form analytics that reveal exactly where users drop off and why. | Sep 30, 2025 * Lisa Wong |
-| ![Accessibility](/assets/blog/accessibility.png) | ## Making Forms Accessible: WCAG 2.1 AA Compliance | A practical guide to building forms that work for everyone, including users with disabilities. | Sep 22, 2025 * David Park |
+| ![Content Fragments](/assets/blog/content-fragments.png) | ## [Building Scalable Content with AEM Fragments](/blog/building-scalable-content) | Learn how to create reusable content components that scale across your entire digital ecosystem. | Oct 28, 2025 * Sarah Chen |
+| ![Headless Forms](/assets/blog/headless-forms.png) | ## [Going Headless: Forms for Modern Web Apps](/blog/going-headless-forms) | Explore how headless forms enable omnichannel experiences while maintaining enterprise-grade functionality. | Oct 15, 2025 * Michael Torres |
+| ![Form Analytics](/assets/blog/analytics.png) | ## [Mastering Form Analytics in Adobe Experience Platform](/blog/form-analytics) | Deep dive into form analytics that reveal exactly where users drop off and why. | Sep 30, 2025 * Lisa Wong |
 
