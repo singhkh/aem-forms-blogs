@@ -41,6 +41,9 @@ A modern blog platform built with AEM Edge Delivery Services, featuring a beauti
 ### ✍️ Author Guides
 - 📝 [Authoring Guide](./AUTHORING-GUIDE.md) - Quick-start templates for content authors
 - 📋 [Block Syntax Reference](./BLOCK-SYNTAX-REFERENCE.md) - Copy-paste block templates
+- ⚠️ [Block Naming Reference](./BLOCK-NAMING-REFERENCE.md) - **CRITICAL: Block naming rules**
+- 🎨 [Figma Matching Fix Guide](./FIGMA-MATCHING-FIX-GUIDE.md) - **Step-by-step: Match your page to Figma design**
+- 🃏 [Blog Cards Fix Guide](./BLOG-CARDS-FIX-GUIDE.md) - **Fix blog cards to match Figma specs**
 
 ### 📄 Sample Documents
 - 🏠 [Sample Landing Page](./sample-landing-page.md) - Example landing page with Featured Blog + Blog Cards

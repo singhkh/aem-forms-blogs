@@ -115,7 +115,13 @@ h6 {
   scroll-margin: 40px;
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
+h1 {
+  font-size: var(--heading-font-size-xxl);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 32px;
+}
+
 h2 { font-size: var(--heading-font-size-xl); }
 h3 { font-size: var(--heading-font-size-l); }
 h4 { font-size: var(--heading-font-size-m); }
@@ -147,6 +153,34 @@ pre {
 
 main > div {
   margin: 40px 16px;
+}
+
+main h2 {
+  margin-top: 48px;
+  margin-bottom: 24px;
+  font-weight: 700;
+}
+
+main h3 {
+  margin-top: 32px;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+main p {
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+main ul,
+main ol {
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+
+main li {
+  margin-bottom: 12px;
+  line-height: 1.7;
 }
 
 input,

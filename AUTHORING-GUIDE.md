@@ -2,6 +2,16 @@
 
 Quick reference for content authors creating blog pages.
 
+## ⚠️ CRITICAL: Block Naming Rule
+
+**Your block headings MUST match the folder names exactly or they won't render!**
+
+- ✅ Use `## Blog Metadata` (not `## Metadata`)
+- ✅ Use `## Hero Image` (not `## Hero`)
+- ✅ Use `## Blog Cards` (not `## Latest Blogs`)
+
+See [BLOCK-NAMING-REFERENCE.md](./BLOCK-NAMING-REFERENCE.md) for complete list.
+
 ---
 
 ## Landing Page Template
@@ -14,9 +24,7 @@ Block: Featured Blog
 
 ---
 
-## Latest Blogs
-
-Block: Blog Cards
+## Blog Cards
 | ![Image](https://example.com/img1.png) | ## Indiana University nurture Facult... | Adobe and Indiana University have been close... | Date of published • Name of the Author |
 | ![Image](https://example.com/img2.png) | ## Indiana University nurture Facult... | Adobe and Indiana University have been close... | Date of published • Name of the Author |
 | ![Image](https://example.com/img3.png) | ## Indiana University nurture Facult... | Adobe and Indiana University have been close... | Date of published • Name of the Author |

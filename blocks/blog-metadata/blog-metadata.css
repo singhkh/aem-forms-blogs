@@ -1,7 +1,7 @@
 .blog-metadata {
-  padding: 24px 0;
+  padding: 32px 0;
   border-bottom: 1px solid #e5e7eb;
-  margin-bottom: 32px;
+  margin-bottom: 40px;
 }
 
 .blog-metadata .metadata-header {
@@ -14,8 +14,15 @@
 .blog-metadata .date-readtime {
   display: flex;
   gap: 16px;
-  font-size: var(--body-font-size-xs);
+  font-size: var(--body-font-size-s);
   color: var(--text-color-secondary);
+  font-weight: 400;
+}
+
+.blog-metadata .date-readtime span:not(:last-child)::after {
+  content: '•';
+  margin-left: 16px;
+  opacity: 0.5;
 }
 
 .blog-metadata .author-info {
@@ -47,9 +54,10 @@
 
 .blog-metadata .author-text h3 {
   margin: 0;
-  font-size: var(--body-font-size-m);
-  font-weight: 600;
+  font-size: var(--heading-font-size-s);
+  font-weight: 700;
   color: var(--text-color);
+  line-height: 1.2;
 }
 
 .blog-metadata .author-text p {
