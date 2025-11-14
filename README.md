@@ -37,7 +37,8 @@ A modern blog platform built with AEM Edge Delivery Services, featuring a beauti
 - 📘 [Figma Implementation Guide](./FIGMA-IMPLEMENTATION.md) - Complete technical implementation details
 - ✅ [Pixel-Perfect Validation](./PIXEL-PERFECT-VALIDATION.md) - Design accuracy validation methodology
 - 📊 [Implementation Summary](./IMPLEMENTATION-SUMMARY.md) - Project overview and statistics
-- 🎨 [Typography & Spacing Fixes](./TYPOGRAPHY-SPACING-FIXES.md) - **Card typography and spacing improvements**
+- 🎨 [Typography & Spacing Fixes](./TYPOGRAPHY-SPACING-FIXES.md) - Card typography and spacing improvements
+- 📦 [Card Blocks Explained](./CARD-BLOCKS-EXPLAINED.md) - **Understanding the three card blocks**
 
 ### ✍️ Author Guides
 - 📝 [Authoring Guide](./AUTHORING-GUIDE.md) - Quick-start templates for content authors
