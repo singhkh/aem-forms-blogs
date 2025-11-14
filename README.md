@@ -39,13 +39,16 @@ A modern blog platform built with AEM Edge Delivery Services, featuring a beauti
 - 📊 [Implementation Summary](./IMPLEMENTATION-SUMMARY.md) - Project overview and statistics
 - 🎨 [Typography & Spacing Fixes](./TYPOGRAPHY-SPACING-FIXES.md) - Card typography and spacing improvements
 - 📦 [Card Blocks Explained](./CARD-BLOCKS-EXPLAINED.md) - **Understanding the three card blocks**
+- 🔗 [Clickable Cards Implementation](./CLICKABLE-CARDS-IMPLEMENTATION.md) - **Technical details of clickable card feature**
 
 ### ✍️ Author Guides
 - 📝 [Authoring Guide](./AUTHORING-GUIDE.md) - Quick-start templates for content authors
 - 📋 [Block Syntax Reference](./BLOCK-SYNTAX-REFERENCE.md) - Copy-paste block templates
 - ⚠️ [Block Naming Reference](./BLOCK-NAMING-REFERENCE.md) - **CRITICAL: Block naming rules**
+- 🔗 [Clickable Cards Guide](./CLICKABLE-CARDS-GUIDE.md) - **How to make blog cards clickable and link to articles**
 - 🎨 [Figma Matching Fix Guide](./FIGMA-MATCHING-FIX-GUIDE.md) - **Step-by-step: Match your page to Figma design**
 - 🃏 [Blog Cards Fix Guide](./BLOG-CARDS-FIX-GUIDE.md) - **Fix blog cards to match Figma specs**
+- 🔧 [Fix Related Stories Content](./FIX-RELATED-STORIES-GOOGLE-DOC.md) - **How to fix placeholder content in cards**
 
 ### 📄 Sample Documents
 - 🏠 [Sample Landing Page](./sample-landing-page.md) - Example landing page with Featured Blog + Blog Cards

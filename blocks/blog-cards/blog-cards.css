@@ -39,12 +39,18 @@
   overflow: hidden;
 }
 
+.blog-cards .blog-card-image a {
+  display: block;
+  line-height: 0;
+}
+
 .blog-cards .blog-card-image::before {
   content: '';
   position: absolute;
   inset: 0;
   background: var(--gradient-card);
   z-index: 1;
+  pointer-events: none;
 }
 
 .blog-cards > ul > li img {
