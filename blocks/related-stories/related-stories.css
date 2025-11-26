@@ -21,7 +21,7 @@
 
 .related-stories > ul > li {
   background-color: var(--background-color);
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -56,13 +56,13 @@
 
 .related-stories > ul > li img {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 320 / 206;
   object-fit: cover;
   display: block;
 }
 
 .related-stories .story-body {
-  padding: 24px;
+  padding: 20px;
 }
 
 .related-stories .story-body h3 {
@@ -139,7 +139,7 @@
   }
 
   .related-stories .story-body {
-    padding: 24px;
+    padding: 20px;
   }
 }
 

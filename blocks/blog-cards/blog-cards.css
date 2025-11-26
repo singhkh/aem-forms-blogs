@@ -18,7 +18,7 @@
 
 .blog-cards > ul > li {
   background-color: var(--background-color);
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -55,13 +55,13 @@
 
 .blog-cards > ul > li img {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 320 / 206;
   object-fit: cover;
   display: block;
 }
 
 .blog-cards .blog-card-body {
-  padding: 24px;
+  padding: 20px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -167,7 +167,7 @@
   }
 
   .blog-cards .blog-card-body {
-    padding: 24px;
+    padding: 20px;
   }
 }
 
