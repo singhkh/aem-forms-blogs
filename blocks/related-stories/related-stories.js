@@ -16,23 +16,34 @@ export default function decorate(block) {
       }
     }
 
-    while (row.firstElementChild) li.append(row.firstElementChild);
+    const imgDiv = document.createElement('div');
+    imgDiv.className = 'story-image';
 
-    [...li.children].forEach((div) => {
+    const bodyDiv = document.createElement('div');
+    bodyDiv.className = 'story-body';
+
+    [...row.children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector('picture')) {
-        div.className = 'story-image';
-        // Make image clickable
-        if (cardLink) {
-          const imageLink = document.createElement('a');
-          imageLink.href = cardLink;
-          imageLink.setAttribute('aria-label', 'Read article');
-          while (div.firstChild) imageLink.append(div.firstChild);
-          div.append(imageLink);
-        }
-      } else {
-        div.className = 'story-body';
+        while (div.firstChild) imgDiv.append(div.firstChild);
+      } else if (div.hasChildNodes()) {
+        const contentDiv = document.createElement('div');
+        while (div.firstChild) contentDiv.append(div.firstChild);
+        bodyDiv.append(contentDiv);
       }
     });
+
+    // Make image clickable
+    if (cardLink && imgDiv.querySelector('picture')) {
+      const imageLink = document.createElement('a');
+      imageLink.href = cardLink;
+      imageLink.setAttribute('aria-label', 'Read article');
+      while (imgDiv.firstChild) imageLink.append(imgDiv.firstChild);
+      imgDiv.append(imageLink);
+    }
+
+    if (imgDiv.hasChildNodes()) li.append(imgDiv);
+    if (bodyDiv.hasChildNodes()) li.append(bodyDiv);
+
     ul.append(li);
   });
 
