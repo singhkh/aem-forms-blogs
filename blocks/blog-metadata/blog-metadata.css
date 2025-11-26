@@ -1,22 +1,23 @@
 .blog-metadata {
-  padding: 32px 0;
+  padding: 24px 0;
   border-bottom: 1px solid #e5e7eb;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
 }
 
 .blog-metadata .metadata-header {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin-bottom: 24px;
+  gap: 24px;
 }
 
 .blog-metadata .date-readtime {
   display: flex;
   gap: 16px;
-  font-size: var(--body-font-size-s);
+  font-size: 14px;
   color: var(--text-color-secondary);
-  font-weight: 400;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .blog-metadata .date-readtime span:not(:last-child)::after {
@@ -30,12 +31,13 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  width: 100%;
 }
 
 .blog-metadata .author-details {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .blog-metadata .author-avatar {
@@ -44,6 +46,8 @@
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
 }
 
 .blog-metadata .author-avatar img {
@@ -54,15 +58,15 @@
 
 .blog-metadata .author-text h3 {
   margin: 0;
-  font-size: var(--heading-font-size-s);
+  font-size: 16px;
   font-weight: 700;
   color: var(--text-color);
   line-height: 1.2;
 }
 
 .blog-metadata .author-text p {
-  margin: 4px 0 0;
-  font-size: var(--body-font-size-xs);
+  margin: 2px 0 0;
+  font-size: 14px;
   color: var(--text-color-secondary);
 }
 
@@ -73,16 +77,18 @@
   padding: 8px 16px;
   border: 1px solid #d1d5db;
   border-radius: 20px;
-  background-color: var(--background-color);
-  font-size: var(--body-font-size-xs);
+  background-color: white;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
+  color: var(--text-color);
 }
 
 .blog-metadata .share-button:hover {
-  border-color: var(--adobe-red);
-  color: var(--adobe-red);
+  border-color: var(--text-color);
+  background-color: #f9fafb;
 }
 
 .blog-metadata .share-button .icon {
@@ -96,5 +102,9 @@
     align-items: center;
     justify-content: space-between;
   }
-}
 
+  .blog-metadata .author-info {
+    width: auto;
+    gap: 24px;
+  }
+}

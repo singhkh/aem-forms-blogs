@@ -1,12 +1,13 @@
 .related-stories {
   padding: 64px 0 80px;
   border-top: 1px solid #e5e7eb;
-  margin-top: 64px;
+  margin-top: 80px;
 }
 
 .related-stories h2 {
-  margin-bottom: 32px;
-  font-size: var(--heading-font-size-xl);
+  margin-bottom: 40px;
+  font-size: 32px;
+  letter-spacing: -0.02em;
 }
 
 .related-stories > ul {

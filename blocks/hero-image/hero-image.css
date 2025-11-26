@@ -2,8 +2,10 @@
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  margin: 0 0 48px;
+  margin: 0 auto 48px;
   line-height: 0;
+  max-width: 1200px;
+  width: 100%;
 }
 
 .hero-image::before {
