@@ -43,6 +43,12 @@
   --nav-height: 64px;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 /* fallback fonts */
 @font-face {
   font-family: roboto-condensed-fallback;
