@@ -17,9 +17,9 @@ export default function decorate(block) {
       const label = cells[0].textContent.trim().toLowerCase();
 
       if (label === 'date' || label === 'published') {
-        const span = document.createElement('span');
-        span.textContent = cells[1].textContent;
-        dateReadtime.append(span);
+        const time = document.createElement('time');
+        time.textContent = cells[1].textContent;
+        dateReadtime.append(time);
       } else if (label === 'readtime' || label === 'read time') {
         const span = document.createElement('span');
         span.textContent = cells[1].textContent;
@@ -56,11 +56,28 @@ export default function decorate(block) {
     const shareButton = document.createElement('button');
     shareButton.className = 'share-button';
     shareButton.innerHTML = '<span>Share</span>';
+    shareButton.setAttribute('aria-label', 'Share this article');
+
     shareButton.addEventListener('click', () => {
       if (navigator.share) {
         navigator.share({
           title: document.title,
           url: window.location.href,
+        }).catch((err) => {
+          // eslint-disable-next-line no-console
+          console.error('Share failed:', err);
+        });
+      } else {
+        // Fallback: Copy to clipboard
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          const span = shareButton.querySelector('span');
+          const originalText = span.textContent;
+          span.textContent = 'Copied!';
+          setTimeout(() => {
+            span.textContent = originalText;
+          }, 2000);
+        }).catch(() => {
+          // Fallback failed
         });
       }
     });

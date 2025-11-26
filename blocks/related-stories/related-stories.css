@@ -1,6 +1,6 @@
 .related-stories {
   padding: 64px 0 80px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-color);
   margin-top: 80px;
 }
 
@@ -25,13 +25,13 @@
   overflow: hidden;
   box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
-  border: 1px solid #f3f4f6;
+  border: 1px solid var(--border-color-light);
 }
 
 .related-stories > ul > li:hover {
   box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
   transform: translateY(-4px);
-  border-color: #e5e7eb;
+  border-color: var(--border-color);
 }
 
 .related-stories .story-image {
