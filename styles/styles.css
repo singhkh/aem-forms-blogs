@@ -177,6 +177,34 @@ pre code {
   padding: 0;
 }
 
+/* Callouts / Blockquotes (Google Style) */
+blockquote {
+  margin: 24px 0;
+  padding: 16px 24px;
+  border-left: 4px solid #1967d2; /* Google Blue */
+  background-color: #e8f0fe; /* Light Blue */
+  border-radius: 0 8px 8px 0;
+  color: #3c4043;
+  font-style: normal;
+}
+
+blockquote strong {
+  color: #1967d2;
+  font-weight: 700;
+}
+
+/* Image Captions */
+main p > em,
+main picture + em,
+figcaption {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  color: #5f6368;
+  margin-top: 8px;
+  font-style: italic;
+}
+
 main > div {
   margin: 40px 16px;
 }
@@ -343,7 +371,7 @@ main .section > div > picture {
   display: block;
 }
 
-/* Allow blocks to be wider (contained by section max-width) */
+/* Exempt Blocks from constraint (like TOC, Grid) */
 main .section > div > .block {
   max-width: 100%;
 }
