@@ -30,6 +30,7 @@
   /* fonts */
   --body-font-family: roboto, roboto-fallback, sans-serif;
   --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --code-font-family: 'Roboto Mono', menlo, consolas, monospace;
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -123,7 +124,7 @@ h6 {
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
-  scroll-margin: 40px;
+  scroll-margin: 80px; /* Increased for sticky header/TOC */
 }
 
 h1 {
@@ -152,15 +153,28 @@ blockquote {
 
 code,
 pre {
+  font-family: var(--code-font-family);
   font-size: var(--body-font-size-s);
 }
 
 pre {
   padding: 16px;
   border-radius: 8px;
-  background-color: var(--light-color);
+  background-color: #f1f3f4;
+  border: 1px solid #dadce0;
   overflow-x: auto;
   white-space: pre;
+}
+
+code {
+  background-color: rgb(27 31 35 / 5%);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+pre code {
+  background-color: transparent;
+  padding: 0;
 }
 
 main > div {
@@ -306,4 +320,30 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+/* --- Content Constraints (Reading Width) --- */
+
+/* Target direct content of sections for narrowing, placed last to override defaults */
+main .section > div > p,
+main .section > div > h1, 
+main .section > div > h2,
+main .section > div > h3,
+main .section > div > h4,
+main .section > div > h5,
+main .section > div > h6,
+main .section > div > ul,
+main .section > div > ol,
+main .section > div > pre,
+main .section > div > blockquote,
+main .section > div > picture {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+/* Allow blocks to be wider (contained by section max-width) */
+main .section > div > .block {
+  max-width: 100%;
 }

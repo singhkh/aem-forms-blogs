@@ -1,0 +1,70 @@
+/* blocks/toc/toc.css */
+
+.toc {
+  background-color: #f8f9fa;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 32px;
+}
+
+.toc .toc-title {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #5f6368;
+  margin: 0 0 12px;
+  letter-spacing: 0.05em;
+}
+
+.toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.toc li {
+  margin-bottom: 8px;
+}
+
+.toc a {
+  text-decoration: none;
+  color: #5f6368;
+  font-size: 14px;
+  line-height: 1.4;
+  display: block;
+}
+
+.toc a:hover {
+  color: #1967d2;
+}
+
+/* Desktop: Sidebar Look */
+@media (width >= 1024px) {
+  .toc {
+    float: right;
+    width: 240px;
+    margin-left: 48px;
+    background: transparent;
+    padding: 0;
+    
+    /* Sticky behavior */
+    position: sticky;
+    top: 100px; /* Below nav */
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+  }
+  
+  .toc .toc-title {
+    margin-top: 0;
+  }
+  
+  .toc ul {
+    border-left: 1px solid #dadce0;
+    padding-left: 16px;
+  }
+  
+  .toc li {
+    margin-bottom: 12px;
+  }
+}
+
