@@ -20,18 +20,14 @@ export default function decorate(block) {
 
     if (pic) {
       // Optimize image
-      // Hero: large, Standard: thumbnail
+      // Hero: large, Standard: medium
       const optimizeOptions = isHero
         ? [{ width: '1200' }]
-        : [{ width: '300' }]; // Thumbnail size
+        : [{ width: '600' }];
 
       const img = pic.querySelector('img');
       const newPic = createOptimizedPicture(img.src, img.alt, isHero, optimizeOptions);
       imgWrapper.append(newPic);
-    } else {
-      // Remove empty wrapper if no image?
-      // Reference design always has images. Keep empty or placeholder if needed.
-      // For strict parity, we assume images exist.
     }
 
     // Common: Wrap content
@@ -40,34 +36,32 @@ export default function decorate(block) {
 
     // Move all text content
     while (textCol.firstChild) {
-      contentWrapper.append(textCol.firstChild);
+      const child = textCol.firstChild;
+
+      // Identify Tags (UL)
+      if (child.tagName === 'UL') {
+        child.classList.add('news-grid-tags');
+      }
+
+      contentWrapper.append(child);
     }
 
-    // Apply specific classes for styling hooks if needed
-    // Identify links to make the whole card clickable (optional, but good UX)
+    // Apply specific classes for styling hooks
+    const paragraphs = contentWrapper.querySelectorAll('p');
+    if (paragraphs.length > 0) {
+      paragraphs[0].classList.add('news-grid-eyebrow'); // Category/Date
+    }
 
-    // DOM Assembly
+    // DOM Assembly - Stacked Layout for ALL cards (Hero and Standard)
     if (isHero) {
       li.className = 'news-hero';
-      li.append(imgWrapper);
-      li.append(contentWrapper);
-
-      // Attempt to identify Category (First P usually)
-      const firstP = contentWrapper.querySelector('p');
-      if (firstP) firstP.classList.add('category');
-
-      // Identify Description (Last P usually)
-      // Hero often has: Category(p) -> Title(h1/h2) -> Description(p)
     } else {
       li.className = 'news-item';
-      // Standard: Text Left, Image Right
-      li.append(contentWrapper);
-      li.append(imgWrapper);
-
-      // Metadata formatting
-      const firstP = contentWrapper.querySelector('p');
-      if (firstP) firstP.classList.add('metadata');
     }
+
+    // Stacked: Image Top, Content Bottom
+    li.append(imgWrapper);
+    li.append(contentWrapper);
 
     ul.append(li);
   });
