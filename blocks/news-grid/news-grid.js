@@ -43,7 +43,23 @@ export default function decorate(block) {
         child.classList.add('news-grid-tags');
       }
 
+      // Strip default button classes if present (Fixes blue background on links)
+      if (child.nodeType === Node.ELEMENT_NODE && child.classList.contains('button-container')) {
+        child.classList.remove('button-container');
+        const a = child.querySelector('a');
+        if (a) {
+          a.classList.remove('button', 'primary', 'secondary');
+        }
+      }
+
       contentWrapper.append(child);
+    }
+
+    // Identify primary link for Clickable Card
+    const mainLink = contentWrapper.querySelector('a');
+    if (mainLink) {
+      mainLink.classList.add('news-grid-link');
+      li.classList.add('news-grid-clickable');
     }
 
     // Apply specific classes for styling hooks

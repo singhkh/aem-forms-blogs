@@ -9,6 +9,16 @@
   margin: 0;
 }
 
+/* --- Typography (Generic) --- */
+.news-grid a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.news-grid a:hover {
+  color: #1967d2; /* Google Blue */
+}
+
 /* --- Common Card Styles (Stacked) --- */
 .news-grid li {
   display: flex;
@@ -18,12 +28,32 @@
   overflow: hidden;
   border: 1px solid var(--border-color-light, #f1f3f4);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
+  position: relative; /* Ensure positioning context for stretched link */
 }
 
 .news-grid li:hover {
   box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
   border-color: transparent;
   transform: translateY(-2px);
+}
+
+/* Clickable Card Logic */
+.news-grid li.news-grid-clickable {
+  cursor: pointer;
+}
+
+.news-grid .news-grid-link::after {
+  content: '';
+  position: absolute;
+  inset: 0; /* Cover the entire card */
+  z-index: 1;
+}
+
+/* Ensure nested interactive elements (like tags) are clickable above the stretched link */
+.news-grid .news-grid-tags a,
+.news-grid .news-grid-tags li {
+  position: relative;
+  z-index: 2;
 }
 
 .news-grid .news-grid-image {
@@ -52,7 +82,7 @@
   flex-grow: 1;
 }
 
-/* --- Typography --- */
+/* --- Specific Typography --- */
 
 /* Eyebrow / Metadata */
 .news-grid .news-grid-eyebrow {
@@ -72,15 +102,6 @@
   font-weight: 500; /* Google Sans Medium equivalent */
   margin: 0 0 12px;
   color: var(--text-color, #202124);
-}
-
-.news-grid a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.news-grid a:hover {
-  color: #1967d2; /* Google Blue */
 }
 
 /* Description */
@@ -117,6 +138,10 @@
   width: auto;
   box-shadow: none;
   transition: background-color 0.2s;
+
+  /* Ensure tags are above stretched link if they are links */
+  position: relative; 
+  z-index: 2;
 }
 
 .news-grid .news-grid-tags li:hover {
@@ -156,7 +181,5 @@
   
   .news-grid li.news-hero {
     grid-column: span 2; /* Hero spans 2 cols, leaving 1 col for standard */
-
-    /* Or make it span 3? Use 2 for "Featured" look */
   }
 }
