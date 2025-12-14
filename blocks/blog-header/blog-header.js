@@ -1,14 +1,5 @@
 export default function decorate(block) {
-  // 1. Breadcrumbs (Simple placeholder logic)
-  const breadcrumbs = document.createElement('nav');
-  breadcrumbs.className = 'blog-breadcrumbs';
-  breadcrumbs.innerHTML = `
-    <a href="/">Home</a> 
-    <span class="separator">/</span> 
-    <a href="/blog">Blog</a>
-  `;
-
-  // 2. Extract Metadata from Block
+  // 1. Extract Metadata from Block
   // Expecting rows like: Key | Value
   const metaData = {};
   const tags = [];
@@ -81,6 +72,5 @@ export default function decorate(block) {
 
   // 4. Assemble
   block.textContent = '';
-  block.append(breadcrumbs);
   block.append(headerDiv);
 }
