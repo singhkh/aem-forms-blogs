@@ -86,4 +86,4 @@ export default function decorate(block) {
 
     container.append(metaRow);
     block.append(container);
-}
+
