@@ -1,0 +1,75 @@
+/* Clone of cards.css for independence */
+.related-posts ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.related-posts li {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.related-posts li:hover {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    transform: translateY(-2px);
+    border-color: var(--border-color-dark);
+}
+
+.related-posts .cards-card-image {
+    line-height: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: var(--light-color);
+}
+
+.related-posts .cards-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.related-posts li:hover .cards-card-image img {
+    transform: scale(1.05);
+}
+
+.related-posts .cards-card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.related-posts .cards-card-body h3 {
+    font-size: var(--heading-font-size-s);
+    margin: 0 0 12px 0;
+    color: var(--text-color);
+    line-height: 1.3;
+}
+
+.related-posts .cards-card-body h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.related-posts .cards-card-body h3 a:hover {
+    color: var(--link-hover-color);
+}
+
+.related-posts .cards-card-body p {
+    margin-top: auto;
+    font-size: var(--body-font-size-xs);
+    color: var(--text-color-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}

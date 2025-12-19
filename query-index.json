@@ -1,0 +1,31 @@
+{
+    "data": [
+        {
+            "path": "/blog/optimizing-forms",
+            "title": "Optimizing AEM Forms for Mobile",
+            "image": "/media/mobile-forms.jpg",
+            "description": "Learn best practices for creating responsive forms.",
+            "author": "Sarah Jenkins",
+            "date": "Oct 26, 2023",
+            "tags": "[\"Forms\", \"Mobile\", \"AEM\"]"
+        },
+        {
+            "path": "/blog/security-in-forms",
+            "title": "Enhancing Security in AEM Forms",
+            "image": "/media/security.jpg",
+            "description": "Integrate Adobe Sign to ensure secure signatures.",
+            "author": "Sarah Jenkins",
+            "date": "Nov 12, 2023",
+            "tags": "[\"Forms\", \"Security\"]"
+        },
+        {
+            "path": "/blog/analytics-performance",
+            "title": "Leveraging Analytics for Performance",
+            "image": "/media/analytics.jpg",
+            "description": "Gain insights into user behavior.",
+            "author": "Michael Chen",
+            "date": "Dec 05, 2023",
+            "tags": "[\"Forms\", \"Analytics\"]"
+        }
+    ]
+}

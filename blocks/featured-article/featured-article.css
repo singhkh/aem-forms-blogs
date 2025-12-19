@@ -1,0 +1,110 @@
+.featured-article {
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+.featured-article .featured-article-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+@media (min-width: 900px) {
+    .featured-article .featured-article-container {
+        grid-template-columns: 1fr 1fr;
+        /* 50/50 Split */
+        gap: 40px;
+    }
+}
+
+/* Image Column */
+.featured-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    background-color: var(--light-color);
+}
+
+.featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Content Column */
+.featured-content {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.featured-content h2 {
+    font-size: var(--heading-font-size-l);
+    margin: 0 0 16px 0;
+    color: var(--text-color);
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+@media (min-width: 900px) {
+    .featured-content h2 {
+        font-size: var(--heading-font-size-xxl);
+    }
+}
+
+.featured-meta {
+    font-size: var(--body-font-size-xs);
+    color: var(--text-color-secondary);
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.featured-desc {
+    font-size: var(--body-font-size-m);
+    color: var(--text-color);
+    margin: 0 0 32px 0;
+    line-height: 1.6;
+}
+
+/* Button / Link */
+.featured-action a.button,
+.featured-action a.button:any-link {
+    background-color: transparent !important;
+    color: var(--adobe-red) !important;
+    border: none;
+    padding: 0;
+    font-weight: 700;
+    text-transform: none;
+    font-size: var(--body-font-size-m);
+    display: inline-flex;
+    align-items: center;
+    border-radius: 0;
+    margin: 0;
+}
+
+.featured-action a.button::after {
+    content: ' ›';
+    font-size: 1.2em;
+    margin-left: 4px;
+    transition: transform 0.2s ease;
+}
+
+.featured-action a.button:hover {
+    background-color: transparent !important;
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+.featured-action a.button:hover::after {
+    transform: translateX(4px);
+}
