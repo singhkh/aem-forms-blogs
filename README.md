@@ -1,13 +1,63 @@
-# Your Project's Title...
-Your project's description...
+# AEM Forms Blog
+
+A modern blog platform built with AEM Edge Delivery Services, featuring a beautiful gradient design system and responsive layout.
 
 ## Environments
-- Preview: https://main--{repo}--{owner}.aem.page/
-- Live: https://main--{repo}--{owner}.aem.live/
+- Preview: https://main--aem-forms-blogs--singhkh.aem.page
+- Live: https://main--aem-forms-blogs--singhkh.aem.live
+
+## Features
+
+- 🎨 Modern gradient design system (purple → pink → red)
+- 📱 Fully responsive (mobile, tablet, desktop)
+- ⚡ Optimized performance with AEM Edge Delivery
+- 🎯 Custom blocks for blog content
+- ✨ Smooth hover effects and transitions
+- 📝 Easy content authoring
+
+## Available Blocks
+
+### Blog Blocks
+- **blog-cards** - Grid of blog post cards (4-column responsive)
+- **featured-blog** - Featured blog hero section with image and text
+- **blog-metadata** - Article metadata (author, date, read time, share)
+- **hero-image** - Article hero image with gradient overlay
+- **related-stories** - Related blog posts section
+
+### Core Blocks
+- **header** - Site header with navigation
+- **footer** - Site footer with language selector
+- **hero** - Hero section
+- **cards** - Generic card grid
+- **columns** - Multi-column layout
 
 ## Documentation
 
-Before using the aem-boilerplate, we recommand you to go through the documentation on https://www.aem.live/docs/ and more specifically:
+### 📚 Implementation Guides
+- 📘 [Figma Implementation Guide](./FIGMA-IMPLEMENTATION.md) - Complete technical implementation details
+- ✅ [Pixel-Perfect Validation](./PIXEL-PERFECT-VALIDATION.md) - Design accuracy validation methodology
+- 📊 [Implementation Summary](./IMPLEMENTATION-SUMMARY.md) - Project overview and statistics
+- 🎨 [Typography & Spacing Fixes](./TYPOGRAPHY-SPACING-FIXES.md) - Card typography and spacing improvements
+- 📦 [Card Blocks Explained](./CARD-BLOCKS-EXPLAINED.md) - **Understanding the three card blocks**
+- 🔗 [Clickable Cards Implementation](./CLICKABLE-CARDS-IMPLEMENTATION.md) - **Technical details of clickable card feature**
+
+### ✍️ Author Guides
+- 📝 [Authoring Guide](./AUTHORING-GUIDE.md) - Quick-start templates for content authors
+- 📋 [Block Syntax Reference](./BLOCK-SYNTAX-REFERENCE.md) - Copy-paste block templates
+- ⚠️ [Block Naming Reference](./BLOCK-NAMING-REFERENCE.md) - **CRITICAL: Block naming rules**
+- 🔗 [Clickable Cards Guide](./CLICKABLE-CARDS-GUIDE.md) - **How to make blog cards clickable and link to articles**
+- 🎨 [Figma Matching Fix Guide](./FIGMA-MATCHING-FIX-GUIDE.md) - **Step-by-step: Match your page to Figma design**
+- 🃏 [Blog Cards Fix Guide](./BLOG-CARDS-FIX-GUIDE.md) - **Fix blog cards to match Figma specs**
+- 🔧 [Fix Related Stories Content](./FIX-RELATED-STORIES-GOOGLE-DOC.md) - **How to fix placeholder content in cards**
+
+### 📄 Sample Documents
+- 🏠 [Sample Landing Page](./sample-landing-page.md) - Example landing page with Featured Blog + Blog Cards
+- 📰 [Sample Detail Page](./sample-detail-page.md) - Example article page with full content
+
+### 🎨 Design Resources
+- [Figma Design](https://www.figma.com/design/b6Z39lwLFKImgqfi2PFZKl/Blog?node-id=24-6868&p=f&t=fmE0pAQtoK3YOk41-0) - Original design source
+
+### AEM Edge Delivery Resources
 1. [Developer Tutorial](https://www.aem.live/developer/tutorial)
 2. [The Anatomy of a Project](https://www.aem.live/developer/anatomy-of-a-project)
 3. [Web Performance](https://www.aem.live/developer/keeping-it-100)

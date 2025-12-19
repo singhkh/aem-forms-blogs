@@ -1,0 +1,31 @@
+.hero-image {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 auto 48px;
+  line-height: 0;
+  max-width: 1024px;
+  width: 100%;
+}
+
+.hero-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-card);
+  z-index: 1;
+}
+
+.hero-image img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+@media (width >= 900px) {
+  .hero-image {
+    border-radius: 16px;
+  }
+}
+

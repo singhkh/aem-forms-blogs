@@ -17,10 +17,10 @@ export default function decorate(block) {
     }
 
     const imgDiv = document.createElement('div');
-    imgDiv.className = 'cards-card-image';
+    imgDiv.className = 'story-image';
 
     const bodyDiv = document.createElement('div');
-    bodyDiv.className = 'cards-card-body';
+    bodyDiv.className = 'story-body';
 
     [...row.children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector('picture')) {

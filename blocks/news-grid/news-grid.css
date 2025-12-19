@@ -1,0 +1,185 @@
+/* blocks/news-grid/news-grid.css */
+
+.news-grid ul {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Mobile: 1 col */
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* --- Typography (Generic) --- */
+.news-grid a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.news-grid a:hover {
+  color: #1967d2; /* Google Blue */
+}
+
+/* --- Common Card Styles (Stacked) --- */
+.news-grid li {
+  display: flex;
+  flex-direction: column; /* Stacked: Image Top */
+  background-color: #fff;
+  border-radius: 16px; /* Google Style */
+  overflow: hidden;
+  border: 1px solid var(--border-color-light, #f1f3f4);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  position: relative; /* Ensure positioning context for stretched link */
+}
+
+.news-grid li:hover {
+  box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+  border-color: transparent;
+  transform: translateY(-2px);
+}
+
+/* Clickable Card Logic */
+.news-grid li.news-grid-clickable {
+  cursor: pointer;
+}
+
+.news-grid .news-grid-link::after {
+  content: '';
+  position: absolute;
+  inset: 0; /* Cover the entire card */
+  z-index: 1;
+}
+
+/* Ensure nested interactive elements (like tags) are clickable above the stretched link */
+.news-grid .news-grid-tags a,
+.news-grid .news-grid-tags li {
+  position: relative;
+  z-index: 2;
+}
+
+.news-grid .news-grid-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #f8f9fa;
+  overflow: hidden;
+}
+
+.news-grid .news-grid-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.news-grid li:hover .news-grid-image img {
+  transform: scale(1.05); /* Zoom effect */
+}
+
+.news-grid .news-grid-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* --- Specific Typography --- */
+
+/* Eyebrow / Metadata */
+.news-grid .news-grid-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #5f6368;
+  margin: 0 0 12px;
+  letter-spacing: 0.05em;
+}
+
+/* Title */
+.news-grid h2,
+.news-grid h3 {
+  font-size: 20px;
+  line-height: 1.4;
+  font-weight: 500; /* Google Sans Medium equivalent */
+  margin: 0 0 12px;
+  color: var(--text-color, #202124);
+}
+
+/* Description */
+.news-grid p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #5f6368;
+  margin: 0 0 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Tags (Pills) */
+.news-grid .news-grid-tags {
+  list-style: none;
+  padding: 0;
+  margin: auto 0 0; /* Push to bottom */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.news-grid .news-grid-tags li {
+  background-color: #e8f0fe; /* Google Blue Tint */
+  color: #1967d2;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 100px; /* Pill */
+  border: none;
+  display: inline-block;
+  width: auto;
+  box-shadow: none;
+  transition: background-color 0.2s;
+
+  /* Ensure tags are above stretched link if they are links */
+  position: relative; 
+  z-index: 2;
+}
+
+.news-grid .news-grid-tags li:hover {
+  background-color: #d2e3fc;
+  box-shadow: none;
+  transform: none;
+}
+
+/* --- Hero Styles (Enhancements) --- */
+.news-grid li.news-hero {
+  /* Hero specific styling overrides if needed */
+}
+
+.news-grid li.news-hero h2 {
+  font-size: 28px;
+  line-height: 1.3;
+}
+
+/* --- Responsive Layout --- */
+
+/* Tablet (≥ 768px) */
+@media (width >= 768px) {
+  .news-grid ul {
+    grid-template-columns: repeat(2, 1fr); /* 2 Cols */
+  }
+
+  .news-grid li.news-hero {
+    grid-column: span 2; /* Hero spans full width on Tablet */
+  }
+}
+
+/* Desktop (≥ 1024px) */
+@media (width >= 1024px) {
+  .news-grid ul {
+    grid-template-columns: repeat(3, 1fr); /* 3 Cols */
+  }
+  
+  .news-grid li.news-hero {
+    grid-column: span 2; /* Hero spans 2 cols, leaving 1 col for standard */
+  }
+}
