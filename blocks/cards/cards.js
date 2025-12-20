@@ -37,10 +37,6 @@ export default async function decorate(block) {
             || doc.querySelector('meta[name="twitter:image"]')?.content
             || doc.querySelector('img')?.src;
 
-
-
-
-
           // Build Card
           const li = document.createElement('li');
 
