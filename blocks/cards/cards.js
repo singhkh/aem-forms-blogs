@@ -45,8 +45,20 @@ export default async function decorate(block) {
           const date = doc.querySelector('meta[name="publish-date"]')?.content || '';
           const author = doc.querySelector('meta[name="author"]')?.content || '';
 
+          // Safe Tag Fetching (Feature Add)
+          const tags = [...doc.querySelectorAll('meta[property="article:tag"], meta[name="keywords"]')]
+            .map(el => el.content)
+            .filter(tag => tag && tag.toLowerCase() !== 'featured')
+            .slice(0, 3);
+
           // Build Card
           const li = document.createElement('li');
+
+          // Conditional Tag HTML - Only adds markup if tags exist
+          const tagsHtml = tags.length > 0
+            ? `<div class="cards-card-tags">${tags.map(tag => `<span>${tag}</span>`).join('')}</div>`
+            : '';
+
           li.innerHTML = `
               <div class="cards-card-image">
                 <a href="${link.href}" aria-label="${title}">
@@ -56,6 +68,7 @@ export default async function decorate(block) {
               <div class="cards-card-body">
                 <h3><a href="${link.href}">${title}</a></h3>
                 <p class="cards-card-Description">${description}</p>
+                ${tagsHtml}
                 <div class="cards-card-meta">
                     ${author ? `<span>${author}</span>` : ''}
                     ${date ? `<span>${date}</span>` : ''}
