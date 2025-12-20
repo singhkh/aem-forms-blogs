@@ -23,14 +23,17 @@
   display: flex;
   flex-direction: column;
   min-height: 570px;
+
   /* Enforce taller cards to match longer description (160 chars) */
   /* Enforce taller cards to match mockup */
 }
 
 .cards ul li:hover {
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
+
   /* Stronger shadow */
   transform: translateY(-4px);
+
   /* Lift */
   border-color: var(--adobe-red);
 }
@@ -61,19 +64,21 @@
 
 .cards ul li:hover .cards-card-image img {
   transform: scale(1.05);
+
   /* Zoom on hover */
 }
 
 /* Card Body */
 .cards-card-body {
   padding: 24px;
-  padding: 24px;
   padding-bottom: 60px;
+
   /* Space for absolute Read More */
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   position: relative;
+
   /* Anchor for absolute positioning */
 }
 
@@ -93,8 +98,9 @@
 }
 
 /* Description */
+/* Description */
 .cards .cards-card-body p,
-.cards .cards-card-Description {
+.cards .cards-card-description {
   margin: 0 0 24px;
   font-size: var(--body-font-size-m) !important;
   line-height: 1.5;
@@ -108,8 +114,8 @@
 }
 
 /* Fix: Ensure inline links in description are not globally Red */
-.cards .cards-card-body p a:not(.button),
-.cards .cards-card-Description a:not(.button) {
+.cards .cards-card-description a:not(.button),
+.cards .cards-card-body p a:not(.button) {
   color: var(--text-color) !important;
   text-decoration: underline;
 }
@@ -118,6 +124,7 @@
 .cards .button.read-more {
   position: absolute;
   bottom: 24px;
+
   /* Fixed distance from bottom */
   left: 24px;
   font-family: var(--body-font-family);

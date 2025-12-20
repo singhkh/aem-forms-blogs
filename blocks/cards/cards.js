@@ -48,7 +48,7 @@ export default async function decorate(block) {
               </div>
               <div class="cards-card-body">
                 <h3><a href="${link.href}">${title}</a></h3>
-                <p class="cards-card-Description">${description}</p>
+                <p class="cards-card-description">${description}</p>
                 <a href="${link.href}" class="button read-more">Read More</a>
               </div>
             `;
