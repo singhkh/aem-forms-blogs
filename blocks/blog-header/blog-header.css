@@ -6,6 +6,7 @@
 
 .blog-header-container {
     max-width: 1200px;
+
     /* Or reading width */
     margin: 0 auto;
 }

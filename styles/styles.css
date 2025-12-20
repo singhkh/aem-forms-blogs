@@ -20,6 +20,7 @@
   --link-color: #3b63fb;
   --link-hover-color: #eb1000;
   --adobe-red: #eb1000;
+
   /* Approved Adobe Red */
   --gradient-card: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #ef4444 100%);
 
@@ -29,24 +30,27 @@
   --border-color-dark: #d1d5db;
 
   /* fonts */
-  --body-font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
-  --heading-font-family: "Adobe Clean", "Helvetica Neue", Arial, sans-serif;
+  --body-font-family: "Adobe Clean", "Helvetica Neue", arial, sans-serif;
+  --heading-font-family: "Adobe Clean", "Helvetica Neue", arial, sans-serif;
   --code-font-family: 'Roboto Mono', menlo, consolas, monospace;
 
   /* body sizes */
   --body-font-size-m: 20px;
+
   /* Highly readable default */
   --body-font-size-s: 18px;
   --body-font-size-xs: 16px;
 
   /* heading sizes */
   --heading-font-size-xxl: 64px;
+
   /* Hero Title */
   --heading-font-size-xl: 48px;
   --heading-font-size-l: 36px;
   --heading-font-size-m: 28px;
   --heading-font-size-s: 24px;
   --heading-font-size-xs: 20px;
+
   /* Subtitle size */
 
   /* nav height */
@@ -128,7 +132,9 @@ h6 {
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
-  scroll-margin: 80px; /* Increased for sticky header/TOC */
+  scroll-margin: 80px;
+
+  /* Increased for sticky header/TOC */
 }
 
 h1 {
@@ -139,9 +145,7 @@ h1 {
   letter-spacing: -0.02em;
 }
 
-h1 {
-  font-size: var(--heading-font-size-xxl);
-}
+
 
 h2 {
   font-size: var(--heading-font-size-xl);
@@ -271,6 +275,7 @@ a.button:focus,
 button:hover,
 button:focus {
   background-color: #d30f00;
+
   /* Darker Adobe Red */
   cursor: pointer;
 }
