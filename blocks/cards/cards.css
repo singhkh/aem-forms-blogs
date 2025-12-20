@@ -25,7 +25,6 @@
   min-height: 570px;
 
   /* Enforce taller cards to match longer description (160 chars) */
-  /* Enforce taller cards to match mockup */
 }
 
 .cards ul li:hover {
@@ -97,7 +96,6 @@
   text-decoration: none;
 }
 
-/* Description */
 /* Description */
 .cards .cards-card-body p,
 .cards .cards-card-description {
