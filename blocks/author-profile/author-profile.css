@@ -116,3 +116,30 @@
 .author-profile.header .author-socials {
     justify-content: center;
 }
+
+@media (min-width: 900px) {
+    .author-profile.header .author-container {
+        flex-direction: row;
+        justify-content: center;
+        text-align: left;
+        align-items: center;
+        max-width: 800px;
+        /* Optional: Constrain width for better centering appearance */
+        margin: 0 auto;
+    }
+
+    .author-profile.header .author-info h3,
+    .author-profile.header .author-bio,
+    .author-profile.header .author-role {
+        text-align: left;
+    }
+
+    .author-profile.header .author-bio {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .author-profile.header .author-socials {
+        justify-content: flex-start;
+    }
+}

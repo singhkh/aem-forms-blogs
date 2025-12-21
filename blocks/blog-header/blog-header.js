@@ -4,7 +4,7 @@ import { getMetadata } from '../../scripts/aem.js';
  * Decorates the blog-header block.
  * @param {Element} block The blog-header block element
  */
-export default function decorate(block) {
+export default async function decorate(block) {
   // 1. Extract Data from Block Rows
   const config = {};
   [...block.children].forEach((row) => {
@@ -12,6 +12,13 @@ export default function decorate(block) {
       const key = row.children[0].textContent.trim().toLowerCase().replace(' ', '-');
       const val = row.children[1].textContent.trim();
       config[key] = val;
+      if (key === 'author') {
+
+        const firstLink = row.children[1].querySelector('a');
+        if (firstLink) {
+          config.authorUrl = firstLink.href; // Custom config prop to capture link
+        }
+      }
     }
   });
 
@@ -50,11 +57,89 @@ export default function decorate(block) {
   authorInfo.className = 'author-info';
 
   if (author) {
+    let authorName = author;
+    let authorImage = null;
+    let authorUrl = null;
+
+    // Check if author is a URL/Path OR if we captured a link from the block
+    if (config.authorUrl || author.startsWith('/') || author.startsWith('http')) {
+      authorUrl = config.authorUrl || author;
+      console.log('[BlogHeader] Fetching author profile:', authorUrl);
+      try {
+        const resp = await fetch(authorUrl);
+        if (resp.ok) {
+          const html = await resp.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+
+          const fetchedTitle = doc.querySelector('h1')?.textContent.trim()
+            || doc.querySelector('meta[property="og:title"]')?.content;
+
+          if (fetchedTitle) {
+            // Clean title if it contains " | Site Name" etc.
+            authorName = fetchedTitle.split('|')[0].trim();
+          }
+
+
+          // 1. Try to find image in author-metadata block (most specific)
+          const metadataBlock = doc.querySelector('.author-metadata');
+          if (metadataBlock) {
+            for (const row of metadataBlock.children) {
+              const key = row.children[0]?.textContent.trim().toLowerCase();
+              // Check if key contains 'image' (it might be wrapped in code tags)
+              if (key.includes('image')) {
+                const val = row.children[1]?.textContent.trim();
+                if (val) {
+                  authorImage = val;
+                }
+                break;
+              }
+            }
+          }
+
+          // 2. Fallback to meta tags if no specific image found
+          if (!authorImage) {
+            authorImage = doc.querySelector('meta[property="og:image"]')?.content
+              || doc.querySelector('meta[name="twitter:image"]')?.content;
+          }
+
+          // Fix localhost https protocol issue
+          if (authorImage && authorImage.startsWith('http')) {
+            try {
+              const url = new URL(authorImage);
+              if (url.hostname === 'localhost' && url.protocol === 'https:') {
+                url.protocol = 'http:';
+                authorImage = url.href;
+              }
+            } catch (e) { /* ignore */ }
+          }
+        }
+      } catch (e) {
+        console.warn('Failed to fetch author profile:', authorUrl, e);
+      }
+    }
+
     // Avatar
     const avatar = document.createElement('div');
     avatar.className = 'author-avatar-placeholder';
-    avatar.textContent = author.charAt(0);
-    authorInfo.append(avatar);
+
+    if (authorImage) {
+      avatar.innerHTML = `<img src="${authorImage}" alt="${authorName}" />`;
+      // Remove placeholder styling if image exists, or keep it as wrapper
+      avatar.style.backgroundColor = 'transparent';
+
+    } else {
+      avatar.textContent = authorName.charAt(0);
+    }
+
+    if (authorUrl) {
+      const avatarLink = document.createElement('a');
+      avatarLink.href = authorUrl;
+      avatarLink.append(avatar);
+      authorInfo.append(avatarLink);
+    } else {
+      authorInfo.append(avatar);
+    }
 
     // Text Stack
     const textStack = document.createElement('div');
@@ -62,7 +147,11 @@ export default function decorate(block) {
 
     const paramName = document.createElement('div');
     paramName.className = 'author-name';
-    paramName.textContent = author;
+    if (authorUrl) {
+      paramName.innerHTML = `<a href="${authorUrl}">${authorName}</a>`;
+    } else {
+      paramName.textContent = authorName;
+    }
     textStack.append(paramName);
 
     const subText = document.createElement('div');

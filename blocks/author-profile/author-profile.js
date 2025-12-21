@@ -1,4 +1,4 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
+import { createOptimizedPicture, getMetadata } from '../../scripts/aem.js';
 
 export default async function decorate(block) {
   // Config
@@ -20,12 +20,14 @@ export default async function decorate(block) {
 
   // Fallback to name-only if fetch fails
   const name = authorData ? authorData.name : authorName;
-  const title = authorData?.title || 'Contributor'; // "AEM Forms Expert"
-  const bio = authorData?.bio || '';
-  const image = authorData?.image;
-  // Socials could be parsed from extra columns in spreadsheet
-  const twitter = authorData?.twitter;
-  const linkedin = authorData?.linkedin;
+  // Check Metadata for Title, Image, Linkedin, etc.
+  const title = authorData?.title || getMetadata('title') || getMetadata('author-title') || 'Contributor';
+  const bio = authorData?.bio || getMetadata('bio') || '';
+  const image = authorData?.image || getMetadata('image') || getMetadata('og:image');
+
+  // Socials
+  const twitter = authorData?.twitter || getMetadata('twitter');
+  const linkedin = authorData?.linkedin || getMetadata('linkedin');
 
   const container = document.createElement('div');
   container.className = 'author-container';

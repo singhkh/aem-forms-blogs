@@ -121,7 +121,14 @@ export default async function decorate(block) {
 
   if (content.title) {
     const h2 = document.createElement('h2');
-    h2.textContent = content.title;
+    if (content.path) {
+      const a = document.createElement('a');
+      a.href = content.path;
+      a.textContent = content.title;
+      h2.append(a);
+    } else {
+      h2.textContent = content.title;
+    }
     contentCol.append(h2);
   }
 
