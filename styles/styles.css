@@ -312,7 +312,14 @@ main img {
 
 /* sections */
 main>.section {
-  margin: 40px 0;
+  padding: 40px 20px;
+}
+
+/* Smart Centering: Only center content, not the section (bg) */
+main>.section>.default-content-wrapper,
+main>.section>.blog-layout-container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 main>.section>div {
@@ -337,4 +344,45 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+/* Blog Detail Layout (Sidebar) */
+/* Blog Detail Layout (Sidebar) */
+/* .blog-layout-container styles are inside media query */
+
+
+
+@media (width >=900px) {
+  .blog-layout-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 40px;
+    align-items: start;
+    overflow: visible;
+    width: 100%;
+  }
+
+  .sidebar-col {
+    grid-column: 2;
+    position: sticky;
+    top: 150px;
+    /* Clear fixed nav + margin */
+    height: fit-content;
+    /* Ensure sticky works */
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .content-col {
+    grid-column: 1;
+    min-width: 0;
+    max-width: 800px;
+    /* Restrict reading width */
+  }
+
+  /* Ensure TOC looks integrated */
+  .toc-wrapper {
+    margin-top: 0;
+  }
 }

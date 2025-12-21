@@ -5,85 +5,96 @@ import { getMetadata } from '../../scripts/aem.js';
  * @param {Element} block The blog-header block element
  */
 export default function decorate(block) {
-  // Clear any existing content (this block is data-driven)
+  // 1. Extract Data from Block Rows
+  const config = {};
+  [...block.children].forEach((row) => {
+    if (row.children.length > 1) {
+      const key = row.children[0].textContent.trim().toLowerCase().replace(' ', '-');
+      const val = row.children[1].textContent.trim();
+      config[key] = val;
+    }
+  });
+
+  // Clear original content
   block.textContent = '';
 
-  const title = document.querySelector('h1')?.textContent || getMetadata('og:title');
-  const author = getMetadata('author');
-  const date = getMetadata('publication-date');
-  // We can also fetch author image if we had an author index,
-  // but for MVP we might just use a generic icon or initials if no image provided.
-  // Or if the author metadata *is* the image (unlikely).
-  // For now, we'll just render the text. as per "Mini photo" requirement,
-  // we'd theoretically look up the author.
-  // We'll leave a placeholder for the image or check if metadata has it.
+  // Data
+  // Check for an existing H1 in the document (typ. the default markdown title)
+  // We want to use it as our source, but remove it from the flow so it doesn't duplicate.
+  let title = getMetadata('og:title');
+  const defaultH1 = document.querySelector('h1');
+  if (defaultH1) {
+    title = defaultH1.textContent;
+    defaultH1.remove();
+  }
+
+  const author = config.author || getMetadata('author');
+  const date = config['publication-date'] || getMetadata('publication-date');
+  const readTime = config['read-time'] || '5 min read'; // Fallback
+  // const description = config.description;
 
   const container = document.createElement('div');
   container.className = 'blog-header-container';
 
-  // 1. Title (H1) - Strict ownership
-  // If there's already an H1 on the page (from content), we should use/move it
-  // or this block *is* the H1 source.
-  // Usually in AEM, the first H1 is the title.
-  // Use H1 here.
+  // 2. Title (H1)
   const h1 = document.createElement('h1');
   h1.textContent = title;
   container.append(h1);
 
-  // 2. Metadata Row
-  const metaRow = document.createElement('div');
-  metaRow.className = 'blog-header-meta';
+  // 3. Metadata & Actions Container
+  const metaContainer = document.createElement('div');
+  metaContainer.className = 'blog-meta-container';
 
-  // Author Section
+  // Left: Author Info
+  const authorInfo = document.createElement('div');
+  authorInfo.className = 'author-info';
+
   if (author) {
-    const authorSpan = document.createElement('div');
-    authorSpan.className = 'blog-author';
-
-    // Placeholder Avatar (Circle)
+    // Avatar
     const avatar = document.createElement('div');
     avatar.className = 'author-avatar-placeholder';
-    avatar.textContent = author.charAt(0); // Initials
-    authorSpan.append(avatar);
+    avatar.textContent = author.charAt(0);
+    authorInfo.append(avatar);
 
-    const nameSpan = document.createElement('span');
-    nameSpan.textContent = author;
-    authorSpan.append(nameSpan);
+    // Text Stack
+    const textStack = document.createElement('div');
+    textStack.className = 'author-text-stack';
 
-    metaRow.append(authorSpan);
+    const paramName = document.createElement('div');
+    paramName.className = 'author-name';
+    paramName.textContent = author;
+    textStack.append(paramName);
+
+    const subText = document.createElement('div');
+    subText.className = 'author-subtext';
+    subText.textContent = `${date ? `${date} · ` : ''}${readTime}`;
+    textStack.append(subText);
+
+    authorInfo.append(textStack);
   }
+  metaContainer.append(authorInfo);
 
-  // Date Section
-  if (date) {
-    const dateSpan = document.createElement('span');
-    dateSpan.className = 'blog-date';
-    dateSpan.textContent = date;
+  // Right: Actions (Logo + Subscribe)
+  const actions = document.createElement('div');
+  actions.className = 'blog-actions';
 
-    // Separator
-    if (author) {
-      const sep = document.createElement('span');
-      sep.className = 'meta-sep';
-      sep.textContent = '|';
-      metaRow.append(sep);
-    }
-    metaRow.append(dateSpan);
-  }
+  // Adobe Red Logo (Text or Icon)
+  const logo = document.createElement('div');
+  logo.className = 'adobe-red-logo';
+  // Use SVG or Text relative to design. Mock has "Adobe Red" + Icon.
+  // We'll use a simple text/icon combo for now.
+  logo.innerHTML = '<span class="icon icon-adobe-red"></span> <span class="logo-text">ADOBE <strong>RED</strong></span>';
+  actions.append(logo);
 
-  // Views / Share (Placeholders per Cards logic - strict data only for MVP)
-  // We can add "Share" link though as that's functional
-  const shareLink = document.createElement('a');
-  shareLink.href = '#'; // Implement real share later
-  shareLink.className = 'blog-share-icon';
-  // Simple SVG or text
-  shareLink.innerHTML = '<span class="icon icon-share"></span> Share';
-  // Add separator
-  if (author || date) {
-    const sep = document.createElement('span');
-    sep.className = 'meta-sep';
-    sep.textContent = '|';
-    metaRow.append(sep);
-  }
-  metaRow.append(shareLink);
+  // Subscribe Button
+  const subscribeBtn = document.createElement('a');
+  subscribeBtn.href = '#subscribe';
+  subscribeBtn.className = 'subscribe-button';
+  subscribeBtn.textContent = 'Subscribe';
+  actions.append(subscribeBtn);
 
-  container.append(metaRow);
+  metaContainer.append(actions);
+
+  container.append(metaContainer);
   block.append(container);
 }

@@ -41,6 +41,62 @@ async function loadFonts() {
 }
 
 /**
+ * Builds a two-column layout for pages with TOC.
+ * @param {Element} main The container element
+ */
+function buildBlogLayout(main) {
+  const toc = main.querySelector('.toc');
+  if (toc) {
+    // Find the section (now guaranteed to exist)
+    const section = toc.closest('.section');
+    if (section) {
+      // 0. Extract Header (Global Search in Section)
+      const headerBlock = section.querySelector('.blog-header');
+      if (headerBlock) {
+        section.prepend(headerBlock);
+      }
+
+      // Elements to identify (Global Search)
+      const tocBlock = toc.closest('.toc-wrapper') || toc;
+      const relatedPosts = section.querySelector('.related-posts-wrapper') || section.querySelector('.related-posts');
+
+      // Create Grid Containers
+      const layoutContainer = document.createElement('div');
+      layoutContainer.classList.add('blog-layout-container');
+
+      const sidebar = document.createElement('div');
+      sidebar.classList.add('sidebar-col');
+
+      const content = document.createElement('div');
+      content.classList.add('content-col');
+
+      // Layout Assembly
+      // 1. Sidebar Content
+      if (tocBlock) sidebar.append(tocBlock);
+      if (relatedPosts) sidebar.append(relatedPosts);
+
+      // 2. Main Content Consolidation
+      // Find ALL content wrappers in the section to ensure we catch split content
+      const contentWrappers = [...section.querySelectorAll('.default-content-wrapper')];
+
+      contentWrappers.forEach((wrapper) => {
+        while (wrapper.firstChild) {
+          content.append(wrapper.firstChild);
+        }
+        wrapper.remove(); // Clean up empty wrapper
+      });
+
+      // Append Grid Columns
+      layoutContainer.append(content);
+      layoutContainer.append(sidebar);
+
+      // Append Grid to Section
+      section.append(layoutContainer);
+    }
+  }
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
@@ -83,6 +139,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  buildBlogLayout(main);
 }
 
 /**
