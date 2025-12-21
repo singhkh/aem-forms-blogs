@@ -1,5 +1,3 @@
-import { createOptimizedPicture, getMetadata } from '../../scripts/aem.js';
-
 export default async function decorate(block) {
     const ul = document.createElement('ul');
 
@@ -19,8 +17,6 @@ export default async function decorate(block) {
                 || doc.querySelector('title')?.innerText
                 || link.textContent.trim();
 
-            const description = doc.querySelector('meta[name="description"]')?.content || '';
-
             // Robust Date Selector
             let dateStr = '';
 
@@ -31,7 +27,7 @@ export default async function decorate(block) {
 
             if (dateMeta) {
                 const d = new Date(dateMeta.content);
-                if (!isNaN(d.getTime())) {
+                if (!Number.isNaN(d.getTime())) {
                     dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                 }
             }
@@ -40,19 +36,20 @@ export default async function decorate(block) {
             if (!dateStr) {
                 const metadataBlock = doc.querySelector('.blog-metadata');
                 if (metadataBlock) {
-                    for (const row of metadataBlock.children) {
+                    [...metadataBlock.children].some((row) => {
                         const label = row.children[0]?.textContent.trim();
                         const value = row.children[1]?.textContent.trim();
                         if (label === 'Date' && value) {
                             const d = new Date(value);
-                            if (!isNaN(d.getTime())) {
+                            if (!Number.isNaN(d.getTime())) {
                                 dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                             } else {
                                 dateStr = value; // Use raw string if parsing fails
                             }
-                            break;
+                            return true;
                         }
-                    }
+                        return false;
+                    });
                 }
             }
 
@@ -61,7 +58,7 @@ export default async function decorate(block) {
                 const bodyText = doc.body.innerText.substring(0, 500); // Check only top content
                 const match = bodyText.match(/([A-Z][a-z]+ \d{1,2}, \d{4})/); // "Jan 15, 2025"
                 if (match) {
-                    dateStr = match[1];
+                    [, dateStr] = match;
                 }
             }
 
@@ -109,6 +106,7 @@ export default async function decorate(block) {
       `;
             return li;
         } catch (e) {
+            // eslint-disable-next-line no-console
             console.warn('Failed to fetch article', link.href, e);
             // Fallback for failed fetch
             const li = document.createElement('li');
@@ -121,7 +119,7 @@ export default async function decorate(block) {
     const promises = links.map(processLink);
     const items = await Promise.all(promises);
 
-    items.forEach(li => ul.append(li));
+    items.forEach((li) => ul.append(li));
 
     block.textContent = '';
     block.append(ul);

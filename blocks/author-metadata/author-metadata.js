@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+// import { getMetadata } from '../../scripts/aem.js';
 
 export default function decorate(block) {
     // Parse key-value pairs

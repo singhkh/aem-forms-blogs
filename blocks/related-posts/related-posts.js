@@ -12,8 +12,8 @@ function createPlaceholder(title) {
   // Extract initials (max 2 characters)
   const initials = title
     .split(' ')
-    .filter(word => word.length > 0)
-    .map(word => word[0].toUpperCase())
+    .filter((word) => word.length > 0)
+    .map((word) => word[0].toUpperCase())
     .slice(0, 2)
     .join('');
 
@@ -93,7 +93,7 @@ export default async function decorate(block) {
   if (rows.length > 0) {
     // Determine if we need to fetch index for metadata lookup
     let indexData = null;
-    const needsLookup = rows.some(row => row.children.length === 1 && row.querySelector('a'));
+    const needsLookup = rows.some((row) => row.children.length === 1 && row.querySelector('a'));
 
     if (needsLookup) {
       try {
@@ -102,7 +102,10 @@ export default async function decorate(block) {
           const json = await resp.json();
           indexData = json.data;
         }
-      } catch (e) { console.warn('Index fetch failed', e); }
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.warn('Index fetch failed', e);
+      }
     }
 
     // Parse each row
@@ -121,7 +124,7 @@ export default async function decorate(block) {
       } else if (indexData) {
         // Scenario B: Link only -> Metadata Lookup
         const path = new URL(link, window.location.origin).pathname;
-        const entry = indexData.find(d => d.path === path);
+        const entry = indexData.find((d) => d.path === path);
         if (entry && entry.image) {
           image = entry.image;
         }
@@ -129,10 +132,9 @@ export default async function decorate(block) {
 
       posts.push({ link, title, image });
     });
-
   } else {
     // 2. Auto Fetch (Fallback if blocks empty)
-    const tags = getMetadata('article:tag').split(',').map((t) => t.trim().toLowerCase()).filter(t => t);
+    const tags = getMetadata('article:tag').split(',').map((t) => t.trim().toLowerCase()).filter((t) => t);
 
     try {
       const resp = await fetch('/query-index.json');
@@ -149,15 +151,16 @@ export default async function decorate(block) {
           return true; // Fallback to latest
         });
 
-        relevant.slice(0, 3).forEach(post => {
+        relevant.slice(0, 3).forEach((post) => {
           posts.push({
             link: post.path,
             title: post.title,
-            image: post.image
+            image: post.image,
           });
         });
       }
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.warn('Auto fetch failed', e);
     }
   }

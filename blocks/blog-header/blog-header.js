@@ -13,7 +13,6 @@ export default async function decorate(block) {
       const val = row.children[1].textContent.trim();
       config[key] = val;
       if (key === 'author') {
-
         const firstLink = row.children[1].querySelector('a');
         if (firstLink) {
           config.authorUrl = firstLink.href; // Custom config prop to capture link
@@ -64,7 +63,6 @@ export default async function decorate(block) {
     // Check if author is a URL/Path OR if we captured a link from the block
     if (config.authorUrl || author.startsWith('/') || author.startsWith('http')) {
       authorUrl = config.authorUrl || author;
-      console.log('[BlogHeader] Fetching author profile:', authorUrl);
       try {
         const resp = await fetch(authorUrl);
         if (resp.ok) {
@@ -80,21 +78,21 @@ export default async function decorate(block) {
             authorName = fetchedTitle.split('|')[0].trim();
           }
 
-
           // 1. Try to find image in author-metadata block (most specific)
           const metadataBlock = doc.querySelector('.author-metadata');
           if (metadataBlock) {
-            for (const row of metadataBlock.children) {
+            [...metadataBlock.children].some((row) => {
               const key = row.children[0]?.textContent.trim().toLowerCase();
               // Check if key contains 'image' (it might be wrapped in code tags)
               if (key.includes('image')) {
                 const val = row.children[1]?.textContent.trim();
                 if (val) {
                   authorImage = val;
+                  return true;
                 }
-                break;
               }
-            }
+              return false;
+            });
           }
 
           // 2. Fallback to meta tags if no specific image found
@@ -115,6 +113,7 @@ export default async function decorate(block) {
           }
         }
       } catch (e) {
+        // eslint-disable-next-line no-console
         console.warn('Failed to fetch author profile:', authorUrl, e);
       }
     }
@@ -127,7 +126,6 @@ export default async function decorate(block) {
       avatar.innerHTML = `<img src="${authorImage}" alt="${authorName}" />`;
       // Remove placeholder styling if image exists, or keep it as wrapper
       avatar.style.backgroundColor = 'transparent';
-
     } else {
       avatar.textContent = authorName.charAt(0);
     }
