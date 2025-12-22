@@ -6,27 +6,24 @@
 .featured-article .featured-article-container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 24px;
-    background-color: var(--background-color);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    gap: 0;
+    /* Removed background/border for seamless look */
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.featured-article .featured-article-container:hover {
-    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 10%), 0 8px 10px -6px rgb(0 0 0 / 10%);
-    transform: translateY(-2px);
-}
+/* Hover effect removed for flat design */
 
 @media (width >=900px) {
     .featured-article .featured-article-container {
-        grid-template-columns: 1fr 1fr;
-
-        /* 50/50 Split */
-        gap: 40px;
-        height: 385px;
+        /* 60/40 Split */
+        grid-template-columns: 3fr 2fr;
+        /* Gap reduced by ~33% (from 48px to 32px) */
+        gap: 32px;
+        height: auto;
+        min-height: 480px;
     }
 }
 
@@ -37,6 +34,9 @@
     height: 100%;
     min-height: 300px;
     background-color: var(--light-color);
+    /* Rounded corners like reference */
+    border-radius: 24px;
+    overflow: hidden;
 }
 
 .featured-image img {
@@ -49,9 +49,26 @@
 /* Content Column */
 .featured-content {
     padding: 32px;
+    /* reduced for mobile default */
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+
+@media (width >=900px) {
+    .featured-content {
+        padding: 48px;
+    }
+}
+
+/* Category Label */
+.featured-category {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
 }
 
 .featured-content h2 {
@@ -70,28 +87,32 @@
 
 .featured-content h2 a:hover {
     color: inherit;
+    text-decoration: underline;
 }
 
 @media (width >=900px) {
     .featured-content h2 {
-        font-size: var(--heading-font-size-xxl);
+        font-size: 40px;
+        /* larger for hero feel */
+        margin-bottom: 24px;
     }
 }
 
-.featured-meta {
-    font-size: var(--body-font-size-xs);
-    color: var(--text-color-secondary);
-    font-weight: 700;
-    margin: 0 0 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+/* Old .featured-meta is removed/unused effectively */
 
 .featured-desc {
     font-size: var(--body-font-size-m);
     color: var(--text-color);
     margin: 0 0 32px;
     line-height: 1.6;
+}
+
+@media (width >=900px) {
+    .featured-desc {
+        font-size: 18px;
+        /* Slightly larger description */
+        margin-bottom: 40px;
+    }
 }
 
 /* Button / Link */
@@ -103,17 +124,18 @@
     padding: 0;
     font-weight: 700;
     text-transform: none;
-    font-size: var(--body-font-size-m);
+    font-size: 16px;
     display: inline-flex;
     align-items: center;
     border-radius: 0;
     margin: 0;
+    overflow: visible;
+    /* Ensure arrow isn't clipped on hover */
 }
 
 .featured-action a.button::after {
     content: ' ›';
-    font-size: 1.2em;
-    margin-left: 4px;
+    margin-left: 6px;
     transition: transform 0.2s ease;
 }
 

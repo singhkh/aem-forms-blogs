@@ -49,7 +49,7 @@ export default async function decorate(block) {
               <div class="cards-card-body">
                 <h3><a href="${link.href}">${title}</a></h3>
                 <p class="cards-card-description">${description}</p>
-                <a href="${link.href}" class="button read-more">Read More</a>
+                <a href="${link.href}" class="button read-more" aria-label="Read more about ${title}">Read More</a>
               </div>
             `;
           return li;
@@ -135,6 +135,7 @@ export default async function decorate(block) {
       readMore.href = titleHref;
       readMore.textContent = 'Read More';
       readMore.className = 'button read-more';
+      readMore.setAttribute('aria-label', `Read more about ${titleText || 'this article'}`);
     }
 
     // 3. Assemble Body

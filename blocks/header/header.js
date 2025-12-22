@@ -132,6 +132,23 @@ export default async function decorate(block) {
     brandLink.closest('.button-container').className = '';
   }
 
+  // Accessibility: Search Label
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    const searchIcon = navTools.querySelector('.icon-search');
+    if (searchIcon) {
+      let searchButton = searchIcon.closest('a, button');
+      if (!searchButton) {
+        searchButton = document.createElement('button');
+        searchButton.type = 'button';
+        searchButton.className = 'search-button';
+        searchIcon.parentNode.insertBefore(searchButton, searchIcon);
+        searchButton.appendChild(searchIcon);
+      }
+      searchButton.setAttribute('aria-label', 'Search');
+    }
+  }
+
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {

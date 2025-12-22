@@ -172,7 +172,7 @@ function buildAuthorProfile(main) {
         const articlesHeader = document.createElement('h2');
         articlesHeader.className = 'articles-by-header';
         articlesHeader.textContent = `Articles by ${authorName}`;
-        articlesHeader.style.color = 'var(--adobe-red, #EB1000)';
+        articlesHeader.style.color = '#000';
         articlesHeader.style.fontSize = '36px';
         articlesHeader.style.marginTop = '40px';
         articlesHeader.style.marginBottom = '24px';
@@ -195,7 +195,14 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main); // blocks are decorated
   buildAuthorProfile(main); // Auto-inject author profile if missing
+  buildAuthorProfile(main); // Auto-inject author profile if missing
   buildBlogLayout(main);
+
+  // Accessibility: Ensure Hero/First Image has Alt Text
+  const firstImg = main.querySelector('img');
+  if (firstImg && !firstImg.alt) {
+    firstImg.alt = document.title || 'Hero Image';
+  }
 }
 
 /**

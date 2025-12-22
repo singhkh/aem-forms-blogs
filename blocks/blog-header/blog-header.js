@@ -35,7 +35,21 @@ export default async function decorate(block) {
   }
 
   const author = config.author || getMetadata('author');
-  const date = config['publication-date'] || getMetadata('publication-date');
+  /* author already declared above */
+  // Date Logic: Robust fetching similar to author-articles
+  let date = config['publication-date'] || getMetadata('publication-date');
+  if (!date) {
+    const pubDateMeta = document.querySelector('meta[name="publication-date"]')
+      || document.querySelector('meta[property="article:published_time"]')
+      || document.querySelector('meta[name="date"]');
+    if (pubDateMeta) {
+      const d = new Date(pubDateMeta.content);
+      if (!Number.isNaN(d.getTime())) {
+        date = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      }
+    }
+  }
+
   const readTime = config['read-time'] || '5 min read'; // Fallback
   // const description = config.description;
 
@@ -133,6 +147,7 @@ export default async function decorate(block) {
     if (authorUrl) {
       const avatarLink = document.createElement('a');
       avatarLink.href = authorUrl;
+      avatarLink.setAttribute('aria-label', `View profile of ${authorName}`);
       avatarLink.append(avatar);
       authorInfo.append(avatarLink);
     } else {
@@ -146,7 +161,13 @@ export default async function decorate(block) {
     const paramName = document.createElement('div');
     paramName.className = 'author-name';
     if (authorUrl) {
-      paramName.innerHTML = `<a href="${authorUrl}">${authorName}</a>`;
+      // Remove redundant link if avatar is already linked to the same place, or add aria-label
+      // To avoid redundant focus, we can make this a span if the whole block was clickable, 
+      // but here we'll just ensure it has context.
+      // Better accessibility: If avatar is a link, maybe this text shouldn't be a separate focusable link unless necessary.
+      // However, for visual consistency, we keep it but ensure aria-label distinguishes it or we mark it aria-hidden if redundant.
+      // Strategy: Keep strict link but prevent "empty link" errors on avatar by having labeled it above.
+      paramName.innerHTML = `<a href="${authorUrl}" aria-label="View profile of ${authorName}">${authorName}</a>`;
     } else {
       paramName.textContent = authorName;
     }

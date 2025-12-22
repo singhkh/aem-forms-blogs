@@ -48,9 +48,9 @@ export default async function decorate(block) {
   const infoDiv = document.createElement('div');
   infoDiv.className = 'author-info';
 
-  const h3 = document.createElement('h3');
-  h3.textContent = name;
-  infoDiv.append(h3);
+  const h1 = document.createElement('h1');
+  h1.textContent = name;
+  infoDiv.append(h1);
 
   const roleMeta = document.createElement('p');
   roleMeta.className = 'author-role';

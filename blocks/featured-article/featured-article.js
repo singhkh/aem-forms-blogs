@@ -9,8 +9,6 @@ export default async function decorate(block) {
   const content = {};
 
   // Check for manual authoring (Standard: Image, Content)
-  // If multiple rows or columns with content, treat as manual.
-  // If single cell with just a link, treat as auto-fetch.
   const isManual = children.length > 1 || (children[0] && children[0].children.length > 1);
 
   if (isManual) {
@@ -35,21 +33,18 @@ export default async function decorate(block) {
 
       // Extract Description
       const clone = textCol.cloneNode(true);
-
       if (titleEl) {
         const cloneTitle = clone.querySelector(titleEl.nodeName);
         if (cloneTitle && cloneTitle.textContent.trim() === content.title) {
           cloneTitle.remove();
         }
       }
-
       if (link) {
         const cloneLink = clone.querySelector('a');
         if (cloneLink && cloneLink.href === content.path) {
           cloneLink.remove();
         }
       }
-
       clone.querySelectorAll('br').forEach((br) => br.remove());
       content.desc = clone.textContent.trim();
     }
@@ -59,8 +54,6 @@ export default async function decorate(block) {
     content.path = link ? link.getAttribute('href') : block.textContent.trim();
 
     if (!content.path) return;
-
-    // DEBUG LOGGING
 
     try {
       const resp = await fetch(content.path);
@@ -75,8 +68,13 @@ export default async function decorate(block) {
 
         content.image = doc.querySelector('meta[property="og:image"]')?.content
           || doc.querySelector('meta[name="twitter:image"]')?.content;
-        content.author = doc.querySelector('meta[name="author"]')?.content;
-        content.date = doc.querySelector('meta[name="publication-date"]')?.content;
+
+        // Fetch Category from article:tag
+        const tags = doc.querySelector('meta[property="article:tag"]')?.content;
+        if (tags) {
+          content.category = tags.split(',')[0].trim();
+        }
+
         content.ctaText = 'Read the Full Story';
       }
     } catch (e) {
@@ -100,7 +98,6 @@ export default async function decorate(block) {
   imageCol.className = 'featured-image';
   if (content.image) {
     const isExternal = content.image.startsWith('http') && !content.image.includes(window.location.hostname);
-
     if (isExternal) {
       const img = document.createElement('img');
       img.src = content.image;
@@ -110,7 +107,7 @@ export default async function decorate(block) {
       img.style.objectFit = 'cover';
       imageCol.append(img);
     } else {
-      const picture = createOptimizedPicture(content.image, content.title, true, [{ width: '750' }]);
+      const picture = createOptimizedPicture(content.image, content.title, true, [{ width: '900' }]);
       imageCol.append(picture);
     }
   }
@@ -119,6 +116,15 @@ export default async function decorate(block) {
   const contentCol = document.createElement('div');
   contentCol.className = 'featured-content';
 
+  // Category Label
+  if (content.category) {
+    const cat = document.createElement('div');
+    cat.className = 'featured-category';
+    cat.textContent = content.category;
+    contentCol.append(cat);
+  }
+
+  // Title
   if (content.title) {
     const h2 = document.createElement('h2');
     if (content.path) {
@@ -132,16 +138,7 @@ export default async function decorate(block) {
     contentCol.append(h2);
   }
 
-  if (content.author || content.date) {
-    const metaRow = document.createElement('p');
-    metaRow.className = 'featured-meta';
-    const parts = [];
-    if (content.author) parts.push(content.author);
-    if (content.date) parts.push(content.date);
-    metaRow.textContent = parts.join(' | ');
-    contentCol.append(metaRow);
-  }
-
+  // Description
   if (content.desc) {
     const p = document.createElement('p');
     p.className = 'featured-desc';
@@ -149,6 +146,7 @@ export default async function decorate(block) {
     contentCol.append(p);
   }
 
+  // CTA
   if (content.path) {
     const btnContainer = document.createElement('div');
     btnContainer.className = 'featured-action';
@@ -158,6 +156,7 @@ export default async function decorate(block) {
     readMore.className = 'button primary';
     readMore.style.backgroundColor = 'transparent';
     readMore.style.color = 'var(--adobe-red)';
+    readMore.setAttribute('aria-label', `Read more about ${content.title}`);
 
     btnContainer.append(readMore);
     contentCol.append(btnContainer);

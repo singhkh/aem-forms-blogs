@@ -96,6 +96,10 @@
   text-decoration: none;
 }
 
+.cards .cards-card-body h3 a:hover {
+  text-decoration: underline;
+}
+
 /* Description */
 .cards .cards-card-body p,
 .cards .cards-card-description {

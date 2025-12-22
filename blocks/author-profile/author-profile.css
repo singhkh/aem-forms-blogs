@@ -49,7 +49,8 @@
 }
 
 .author-role {
-    color: var(--adobe-red);
+    color: #000;
+    /* Changed to black as requested */
     font-weight: 700;
     font-size: var(--body-font-size-xs);
     text-transform: uppercase;
@@ -70,12 +71,19 @@
 }
 
 .author-socials a {
-    color: var(--text-color-secondary);
+    color: #000;
     text-decoration: none;
 }
 
 .author-socials a:hover {
-    color: var(--adobe-red);
+    color: #000;
+    text-decoration: underline;
+}
+
+.author-socials a::after {
+    content: ' ↗';
+    margin-left: 2px;
+    font-size: 0.9em;
 }
 
 /* --- Variant: Header (Bio Page) --- */
@@ -83,7 +91,6 @@
     background-color: transparent;
     padding: 60px 0;
     text-align: center;
-    border-bottom: 1px solid var(--border-color-light);
     margin-bottom: 60px;
 }
 
@@ -104,6 +111,8 @@
 .author-profile.header .author-info h3 {
     font-size: var(--heading-font-size-xl);
     margin-bottom: 12px;
+    color: #000;
+    /* Force black as requested */
 }
 
 .author-profile.header .author-bio {
