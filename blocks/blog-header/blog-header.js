@@ -162,12 +162,17 @@ export default async function decorate(block) {
     paramName.className = 'author-name';
     if (authorUrl) {
       // Remove redundant link if avatar is already linked to the same place, or add aria-label
-      // To avoid redundant focus, we can make this a span if the whole block was clickable, 
+      // To avoid redundant focus, we can make this a span if the whole block was clickable,
       // but here we'll just ensure it has context.
-      // Better accessibility: If avatar is a link, maybe this text shouldn't be a separate focusable link unless necessary.
-      // However, for visual consistency, we keep it but ensure aria-label distinguishes it or we mark it aria-hidden if redundant.
-      // Strategy: Keep strict link but prevent "empty link" errors on avatar by having labeled it above.
-      paramName.innerHTML = `<a href="${authorUrl}" aria-label="View profile of ${authorName}">${authorName}</a>`;
+      /* Better accessibility: If avatar is a link, maybe this text shouldn't be a
+         separate focusable link unless necessary.
+         However, for visual consistency, we keep it but ensure aria-label distinguishes it
+         or we mark it aria-hidden if redundant. */
+      // Strategy: Keep strict link but prevent "empty link" errors on avatar
+      // by having labeled it above.
+      paramName.innerHTML = `<a href="${authorUrl}" aria-label="View profile of ${authorName}">
+        ${authorName}
+      </a>`;
     } else {
       paramName.textContent = authorName;
     }
