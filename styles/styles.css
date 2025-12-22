@@ -347,7 +347,9 @@ main .section.highlight {
 }
 
 /* Blog Detail Layout (Sidebar) */
+
 /* Blog Detail Layout (Sidebar) */
+
 /* .blog-layout-container styles are inside media query */
 
 
@@ -366,8 +368,10 @@ main .section.highlight {
     grid-column: 2;
     position: sticky;
     top: 150px;
+
     /* Clear fixed nav + margin */
     height: fit-content;
+
     /* Ensure sticky works */
     display: flex;
     flex-direction: column;
@@ -378,6 +382,7 @@ main .section.highlight {
     grid-column: 1;
     min-width: 0;
     max-width: 800px;
+
     /* Restrict reading width */
   }
 

@@ -81,6 +81,7 @@
   /* Anchor for absolute positioning */
 }
 
+
 /* Card Title */
 .cards .cards-card-body h3 {
   margin: 0 0 16px;
@@ -94,6 +95,15 @@
 .cards .cards-card-body h3 a {
   color: var(--text-color) !important;
   text-decoration: none;
+}
+
+
+/* Fix: Ensure inline links in description are not globally Red */
+/* stylelint-disable-next-line no-descending-specificity */
+.cards .cards-card-description a:not(.button),
+.cards .cards-card-body p a:not(.button) {
+  color: var(--text-color) !important;
+  text-decoration: underline;
 }
 
 .cards .cards-card-body h3 a:hover {
@@ -115,12 +125,7 @@
   text-overflow: ellipsis;
 }
 
-/* Fix: Ensure inline links in description are not globally Red */
-.cards .cards-card-description a:not(.button),
-.cards .cards-card-body p a:not(.button) {
-  color: var(--text-color) !important;
-  text-decoration: underline;
-}
+
 
 /* Read More Button - Absolute Positioned */
 .cards .button.read-more {

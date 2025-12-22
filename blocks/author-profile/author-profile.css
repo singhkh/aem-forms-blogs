@@ -50,6 +50,7 @@
 
 .author-role {
     color: #000;
+
     /* Changed to black as requested */
     font-weight: 700;
     font-size: var(--body-font-size-xs);
@@ -112,6 +113,7 @@
     font-size: var(--heading-font-size-xl);
     margin-bottom: 12px;
     color: #000;
+
     /* Force black as requested */
 }
 
@@ -126,13 +128,14 @@
     justify-content: center;
 }
 
-@media (min-width: 900px) {
+@media (width >= 900px) {
     .author-profile.header .author-container {
         flex-direction: row;
         justify-content: center;
         text-align: left;
         align-items: center;
         max-width: 800px;
+
         /* Optional: Constrain width for better centering appearance */
         margin: 0 auto;
     }

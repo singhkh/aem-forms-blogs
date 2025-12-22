@@ -23,6 +23,7 @@
     display: flex;
     flex-direction: column;
     min-height: 400px;
+
     /* Reduced min-height compared to cards */
 }
 
@@ -50,6 +51,7 @@
 
 .author-articles ul li:hover .author-articles-card-image img {
     transform: scale(1.05);
+
     /* Zoom effect */
 }
 
@@ -88,9 +90,11 @@
 /* Read More Button */
 .author-articles .read-more {
     background-color: #D30F00;
+
     /* Adobe Red Standard */
     color: white !important;
     border-radius: 20px;
+
     /* Pill shape */
     padding: 6px 20px;
     font-size: 0.9rem;
@@ -128,6 +132,7 @@
 
 .author-articles-learn-more::after {
     content: '↗';
+
     /* Icon placeholder */
     font-size: 1rem;
 }
@@ -142,6 +147,7 @@
 
 .author-articles-author-title::after {
     content: '↗';
+
     /* Icon placeholder matching design */
     font-size: 1rem;
     color: #D30F00;
