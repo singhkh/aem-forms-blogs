@@ -1,6 +1,27 @@
 import { getMetadata, decorateIcons } from '../../scripts/aem.js';
 
 /**
+ * Shows a toast notification.
+ * @param {string} message The message to display
+ */
+function showToast(message) {
+  const toast = document.createElement('div');
+  toast.className = 'toast-notification';
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  // Trigger animation
+  requestAnimationFrame(() => {
+    toast.classList.add('show');
+  });
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
+}
+
+/**
  * Decorates the blog-header block.
  * @param {Element} block The blog-header block element
  */
@@ -261,21 +282,4 @@ export default async function decorate(block) {
 
   container.append(metaContainer);
   block.append(container);
-}
-
-function showToast(message) {
-  const toast = document.createElement('div');
-  toast.className = 'toast-notification';
-  toast.textContent = message;
-  document.body.appendChild(toast);
-
-  // Trigger animation
-  requestAnimationFrame(() => {
-    toast.classList.add('show');
-  });
-
-  setTimeout(() => {
-    toast.classList.remove('show');
-    setTimeout(() => toast.remove(), 300);
-  }, 3000);
 }

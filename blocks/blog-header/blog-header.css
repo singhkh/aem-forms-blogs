@@ -168,7 +168,7 @@
 .share-btn:hover,
 .share-btn:focus {
   background-color: transparent !important;
-  color: var(--Adobe-Red, #EB1000);
+  color: var(--adobe-red, #EB1000);
 }
 
 .share-btn.share-copy:hover,
