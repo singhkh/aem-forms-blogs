@@ -1,0 +1,61 @@
+# Blog Assets Directory
+
+Place your blog post images in this folder.
+
+## Recommended Image Specifications:
+
+### Blog Cards / Related Stories:
+- **Aspect Ratio:** 16:9
+- **Recommended Size:** 750px × 422px
+- **Format:** JPG or PNG
+- **File Size:** < 200KB (optimized)
+
+### Featured Blog Hero:
+- **Aspect Ratio:** 16:9
+- **Recommended Size:** 1200px × 675px
+- **Format:** JPG or PNG
+- **File Size:** < 300KB (optimized)
+
+### Hero Image (Detail Page):
+- **Aspect Ratio:** 16:9
+- **Recommended Size:** 1200px × 675px
+- **Format:** JPG or PNG
+- **File Size:** < 300KB (optimized)
+
+## Naming Convention:
+
+Use descriptive, URL-friendly names:
+- `universal-editor-hero.png`
+- `content-fragments-thumb.png`
+- `headless-forms-card.jpg`
+
+## Where to Get Images:
+
+1. **Unsplash** (free): https://unsplash.com/
+2. **Pexels** (free): https://www.pexels.com/
+3. **Adobe Stock** (licensed): https://stock.adobe.com/
+4. **Custom screenshots** from your AEM Forms interface
+5. **Design team** created graphics
+
+## Example File Structure:
+
+```
+assets/
+└── blog/
+    ├── universal-editor-hero.png
+    ├── universal-editor-thumb.png
+    ├── content-fragments.png
+    ├── headless-forms.png
+    ├── form-analytics.png
+    ├── accessibility.png
+    ├── performance.png
+    ├── integration.png
+    └── multi-step.png
+```
+
+## After Adding Images:
+
+1. Commit to git: `git add assets/ && git commit -m "Add blog images"`
+2. Push: `git push`
+3. Images will be available at: `https://main--aem-forms-blogs--singhkh.aem.page/assets/blog/yourimage.png`
+

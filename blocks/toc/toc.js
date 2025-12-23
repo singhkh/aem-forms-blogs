@@ -1,47 +1,63 @@
+/**
+ * Decorates the TOC block.
+ * @param {Element} block The TOC block element
+ */
 export default function decorate(block) {
-  const tocTitle = document.createElement('h2');
-  tocTitle.textContent = 'On this page';
-  tocTitle.className = 'toc-title';
+  const main = document.querySelector('main');
+  if (!main) return;
+
+  // Identify headings
+  const headings = main.querySelectorAll('h2, h3');
+  if (headings.length === 0) {
+    block.remove(); // No TOC if no headings
+    return;
+  }
+
+  const nav = document.createElement('nav');
+  nav.className = 'toc-nav';
+  nav.setAttribute('aria-label', 'Table of Contents');
+
+  const title = document.createElement('p');
+  title.className = 'toc-title';
+  title.textContent = 'Table of Contents';
+  nav.append(title);
 
   const ul = document.createElement('ul');
 
-  // Find all H2s in main
-  const headings = document.querySelectorAll('main h2');
-
-  headings.forEach((h) => {
-    // Skip the TOC's own title if it's an H2
-    if (block.contains(h)) return;
-
-    // Ensure ID exists
-    let { id } = h;
-    if (!id) {
-      id = h.textContent
+  headings.forEach((h, index) => {
+    // Generate ID if missing
+    if (!h.id) {
+      h.id = h.textContent
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
         .replace(/(^-|-$)/g, '');
-      h.id = id;
+      if (!h.id) h.id = `section-${index + 1}`;
     }
 
     const li = document.createElement('li');
+    li.className = `toc-item toc-${h.tagName.toLowerCase()}`;
+
     const a = document.createElement('a');
-    a.href = `#${id}`;
+    a.href = `#${h.id}`;
     a.textContent = h.textContent;
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      h.scrollIntoView({ behavior: 'smooth' });
+      // Update history
+      window.history.pushState(null, null, `#${h.id}`);
+    });
+
     li.append(a);
     ul.append(li);
   });
 
-  if (ul.children.length > 0) {
-    block.textContent = '';
-    block.append(tocTitle);
-    block.append(ul);
-  } else {
-    // Hide if no headings
-    block.style.display = 'none';
-  }
+  nav.append(ul);
+  block.textContent = '';
+  block.append(nav);
 
-  // Optional: Highlight active link on scroll
+  // Optional: Scroll Spy logic could go here
   window.addEventListener('scroll', () => {
-    // Simple logic to find active section
+    // Simple active state logic
     // ...
   }, { passive: true });
 }

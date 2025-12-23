@@ -1,70 +1,60 @@
-/* blocks/toc/toc.css */
-
 .toc {
-  background-color: #f8f9fa;
-  padding: 16px;
-  border-radius: 8px;
-  margin-bottom: 32px;
+    /* Default mobile styles: Hidden or Top Accordion */
+    display: none;
 }
 
-.toc .toc-title {
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #5f6368;
-  margin: 0 0 12px;
-  letter-spacing: 0.05em;
-}
+@media (width >= 900px) {
+    .toc {
+        display: block;
+        width: 100%;
+    }
 
-.toc ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+    .toc-nav {
+        position: sticky;
+        top: calc(var(--nav-height) + 40px);
 
-.toc li {
-  margin-bottom: 8px;
-}
+        /* 64px + 40px padding */
+        padding: 24px;
+        border-left: 2px solid var(--border-color);
+        background-color: var(--background-color);
+    }
 
-.toc a {
-  text-decoration: none;
-  color: #5f6368;
-  font-size: 14px;
-  line-height: 1.4;
-  display: block;
-}
+    .toc-title {
+        font-size: var(--body-font-size-xs);
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text-color);
+        margin: 0 0 16px;
+        letter-spacing: 0.5px;
+    }
 
-.toc a:hover {
-  color: #1967d2;
-}
+    .toc ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 
-/* Desktop: Sidebar Look */
-@media (width >= 1024px) {
-  .toc {
-    float: right;
-    width: 240px;
-    margin-left: 48px;
-    background: transparent;
-    padding: 0;
-    
-    /* Sticky behavior */
-    position: sticky;
-    top: 100px; /* Below nav */
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
-  }
-  
-  .toc .toc-title {
-    margin-top: 0;
-  }
-  
-  .toc ul {
-    border-left: 1px solid #dadce0;
-    padding-left: 16px;
-  }
-  
-  .toc li {
-    margin-bottom: 12px;
-  }
-}
+    .toc li {
+        margin-bottom: 12px;
+        line-height: 1.4;
+    }
 
+    .toc li a {
+        text-decoration: none;
+        color: var(--text-color-secondary);
+        font-size: var(--body-font-size-s);
+        transition: color 0.2s ease;
+        display: block;
+    }
+
+    .toc li a:hover,
+    .toc li a.active {
+        color: var(--adobe-red);
+    }
+
+    /* H3 indent */
+    .toc li.toc-h3 {
+        padding-left: 16px;
+        font-size: var(--body-font-size-xs);
+    }
+}

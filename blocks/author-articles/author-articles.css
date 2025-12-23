@@ -1,0 +1,154 @@
+/* author-articles */
+.author-articles ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+@media (width >=900px) {
+    .author-articles ul {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.author-articles ul li {
+    background-color: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+
+    /* Reduced min-height compared to cards */
+}
+
+.author-articles ul li:hover {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 10%), 0 4px 6px -2px rgb(0 0 0 / 5%);
+    transform: translateY(-2px);
+    border-color: var(--adobe-red);
+}
+
+/* Card Image */
+.author-articles-card-image {
+    line-height: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: var(--light-color);
+    border-bottom: 1px solid #eee;
+}
+
+.author-articles-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.author-articles ul li:hover .author-articles-card-image img {
+    transform: scale(1.05);
+
+    /* Zoom effect */
+}
+
+
+.author-articles-card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    position: relative;
+}
+
+/* Title */
+.author-articles-card-body h3 {
+    margin: 0 0 12px;
+    font-family: var(--heading-font-family);
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-color);
+}
+
+.author-articles-card-body h3 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Date */
+.author-articles-card-date {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 24px;
+    display: block;
+}
+
+/* Read More Button */
+.author-articles .read-more {
+    background-color: #D30F00;
+
+    /* Adobe Red Standard */
+    color: white !important;
+    border-radius: 20px;
+
+    /* Pill shape */
+    padding: 6px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 24px;
+    align-self: flex-start;
+    transition: background-color 0.2s;
+}
+
+.author-articles .read-more:hover {
+    background-color: #B50D00;
+}
+
+/* Footer Section (Learn More + Author Title) */
+.author-articles-card-footer {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.author-articles-learn-more {
+    color: #D30F00 !important;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.author-articles-learn-more::after {
+    content: '↗';
+
+    /* Icon placeholder */
+    font-size: 1rem;
+}
+
+.author-articles-author-title {
+    color: #666;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.author-articles-author-title::after {
+    content: '↗';
+
+    /* Icon placeholder matching design */
+    font-size: 1rem;
+    color: #D30F00;
+}

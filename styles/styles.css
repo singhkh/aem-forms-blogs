@@ -18,8 +18,10 @@
   --text-color: #2c2c2c;
   --text-color-secondary: #6b7280;
   --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  --link-hover-color: #eb1000;
   --adobe-red: #eb1000;
+
+  /* Approved Adobe Red */
   --gradient-card: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #ef4444 100%);
 
   /* borders */
@@ -28,22 +30,28 @@
   --border-color-dark: #d1d5db;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: "Adobe Clean", "Helvetica Neue", arial, sans-serif;
+  --heading-font-family: "Adobe Clean", "Helvetica Neue", arial, sans-serif;
   --code-font-family: 'Roboto Mono', menlo, consolas, monospace;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  --body-font-size-m: 20px;
+
+  /* Highly readable default */
+  --body-font-size-s: 18px;
+  --body-font-size-xs: 16px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
+  --heading-font-size-xxl: 64px;
+
+  /* Hero Title */
+  --heading-font-size-xl: 48px;
+  --heading-font-size-l: 36px;
+  --heading-font-size-m: 28px;
   --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  --heading-font-size-xs: 20px;
+
+  /* Subtitle size */
 
   /* nav height */
   --nav-height: 64px;
@@ -68,7 +76,7 @@
   src: local('Arial');
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   :root {
     /* body sizes */
     --body-font-size-m: 18px;
@@ -124,7 +132,9 @@ h6 {
   font-family: var(--heading-font-family);
   font-weight: 600;
   line-height: 1.25;
-  scroll-margin: 80px; /* Increased for sticky header/TOC */
+  scroll-margin: 80px;
+
+  /* Increased for sticky header/TOC */
 }
 
 h1 {
@@ -135,11 +145,27 @@ h1 {
   letter-spacing: -0.02em;
 }
 
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
+
+
+h2 {
+  font-size: var(--heading-font-size-xl);
+}
+
+h3 {
+  font-size: var(--heading-font-size-l);
+}
+
+h4 {
+  font-size: var(--heading-font-size-m);
+}
+
+h5 {
+  font-size: var(--heading-font-size-s);
+}
+
+h6 {
+  font-size: var(--heading-font-size-xs);
+}
 
 p,
 dl,
@@ -166,46 +192,7 @@ pre {
   white-space: pre;
 }
 
-code {
-  background-color: rgb(27 31 35 / 5%);
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-}
-
-pre code {
-  background-color: transparent;
-  padding: 0;
-}
-
-/* Callouts / Blockquotes (Google Style) */
-blockquote {
-  margin: 24px 0;
-  padding: 16px 24px;
-  border-left: 4px solid #1967d2; /* Google Blue */
-  background-color: #e8f0fe; /* Light Blue */
-  border-radius: 0 8px 8px 0;
-  color: #3c4043;
-  font-style: normal;
-}
-
-blockquote strong {
-  color: #1967d2;
-  font-weight: 700;
-}
-
-/* Image Captions */
-main p > em,
-main picture + em,
-figcaption {
-  display: block;
-  text-align: center;
-  font-size: 14px;
-  color: #5f6368;
-  margin-top: 8px;
-  font-style: italic;
-}
-
-main > div {
+main>div {
   margin: 40px 16px;
 }
 
@@ -275,8 +262,8 @@ button {
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  background-color: var(--link-color);
-  color: var(--background-color);
+  background-color: var(--adobe-red);
+  color: white;
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -287,7 +274,9 @@ a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background-color: #d30f00;
+
+  /* Darker Adobe Red */
   cursor: pointer;
 }
 
@@ -322,22 +311,29 @@ main img {
 }
 
 /* sections */
-main > .section {
-  margin: 40px 0;
+main>.section {
+  padding: 40px 20px;
 }
 
-main > .section > div {
+/* Smart Centering: Only center content, not the section (bg) */
+main>.section>.default-content-wrapper,
+main>.section>.blog-layout-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+main>.section>div {
   max-width: 1200px;
   margin: auto;
   padding: 0 24px;
 }
 
-main > .section:first-of-type {
+main>.section:first-of-type {
   margin-top: 0;
 }
 
-@media (width >= 900px) {
-  main > .section > div {
+@media (width >=900px) {
+  main>.section>div {
     padding: 0 32px;
   }
 }
@@ -350,28 +346,48 @@ main .section.highlight {
   padding: 40px 0;
 }
 
-/* --- Content Constraints (Reading Width) --- */
+/* Blog Detail Layout (Sidebar) */
 
-/* Target direct content of sections for narrowing, placed last to override defaults */
-main .section > div > p,
-main .section > div > h1, 
-main .section > div > h2,
-main .section > div > h3,
-main .section > div > h4,
-main .section > div > h5,
-main .section > div > h6,
-main .section > div > ul,
-main .section > div > ol,
-main .section > div > pre,
-main .section > div > blockquote,
-main .section > div > picture {
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
+/* Blog Detail Layout (Sidebar) */
 
-/* Exempt Blocks from constraint (like TOC, Grid) */
-main .section > div > .block {
-  max-width: 100%;
+/* .blog-layout-container styles are inside media query */
+
+
+
+@media (width >=900px) {
+  .blog-layout-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 40px;
+    align-items: start;
+    overflow: visible;
+    width: 100%;
+  }
+
+  .sidebar-col {
+    grid-column: 2;
+    position: sticky;
+    top: 150px;
+
+    /* Clear fixed nav + margin */
+    height: fit-content;
+
+    /* Ensure sticky works */
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .content-col {
+    grid-column: 1;
+    min-width: 0;
+    max-width: 800px;
+
+    /* Restrict reading width */
+  }
+
+  /* Ensure TOC looks integrated */
+  .toc-wrapper {
+    margin-top: 0;
+  }
 }

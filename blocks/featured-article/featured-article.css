@@ -1,0 +1,157 @@
+.featured-article {
+    margin: 40px auto;
+    max-width: 1200px;
+}
+
+.featured-article .featured-article-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+
+    /* Removed background/border for seamless look */
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+/* Hover effect removed for flat design */
+
+@media (width >=900px) {
+    .featured-article .featured-article-container {
+        /* 60/40 Split */
+        grid-template-columns: 3fr 2fr;
+
+        /* Gap reduced by ~33% (from 48px to 32px) */
+        gap: 32px;
+        height: auto;
+        min-height: 480px;
+    }
+}
+
+/* Image Column */
+.featured-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 300px;
+    background-color: var(--light-color);
+
+    /* Rounded corners like reference */
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.featured-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Content Column */
+.featured-content {
+    padding: 32px;
+
+    /* reduced for mobile default */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (width >=900px) {
+    .featured-content {
+        padding: 48px;
+    }
+}
+
+/* Category Label */
+.featured-category {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.featured-content h2 {
+    font-size: var(--heading-font-size-l);
+    margin: 0 0 16px;
+    color: var(--text-color);
+    line-height: 1.1;
+    font-weight: 700;
+}
+
+.featured-content h2 a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.featured-content h2 a:hover {
+    color: inherit;
+    text-decoration: underline;
+}
+
+@media (width >=900px) {
+    .featured-content h2 {
+        font-size: 40px;
+
+        /* larger for hero feel */
+        margin-bottom: 24px;
+    }
+}
+
+/* Old .featured-meta is removed/unused effectively */
+
+.featured-desc {
+    font-size: var(--body-font-size-m);
+    color: var(--text-color);
+    margin: 0 0 32px;
+    line-height: 1.6;
+}
+
+@media (width >=900px) {
+    .featured-desc {
+        font-size: 18px;
+
+        /* Slightly larger description */
+        margin-bottom: 40px;
+    }
+}
+
+/* Button / Link */
+.featured-action a.button,
+.featured-action a.button:any-link {
+    background-color: transparent !important;
+    color: var(--adobe-red) !important;
+    border: none;
+    padding: 0;
+    font-weight: 700;
+    text-transform: none;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 0;
+    margin: 0;
+    overflow: visible;
+
+    /* Ensure arrow isn't clipped on hover */
+}
+
+.featured-action a.button::after {
+    content: ' ›';
+    margin-left: 6px;
+    transition: transform 0.2s ease;
+}
+
+.featured-action a.button:hover {
+    background-color: transparent !important;
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+.featured-action a.button:hover::after {
+    transform: translateX(4px);
+}
