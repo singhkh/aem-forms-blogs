@@ -263,8 +263,6 @@ export default async function decorate(block) {
   shareWrapper.append(shareButtons);
   actions.append(shareWrapper);
 
-
-
   // Subscribe Button
   const subscribeBtn = document.createElement('a');
   subscribeBtn.href = '#subscribe';
