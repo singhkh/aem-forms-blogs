@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { getMetadata, decorateIcons } from '../../scripts/aem.js';
 
 /**
  * Decorates the blog-header block.
@@ -187,9 +187,60 @@ export default async function decorate(block) {
   }
   metaContainer.append(authorInfo);
 
-  // Right: Actions (Logo + Subscribe)
+  // Right: Actions (Logo + Subscribe + Share)
   const actions = document.createElement('div');
   actions.className = 'blog-actions';
+
+  // Social Sharing
+  const shareWrapper = document.createElement('div');
+  shareWrapper.className = 'share-wrapper';
+
+  const shareLabel = document.createElement('span');
+  shareLabel.className = 'share-label';
+  shareLabel.textContent = 'Share:';
+  shareWrapper.append(shareLabel);
+
+  const shareButtons = document.createElement('div');
+  shareButtons.className = 'share-buttons';
+
+  const pageUrl = encodeURIComponent(window.location.href);
+  const pageTitle = encodeURIComponent(document.title);
+
+  const socialLinks = [
+    { type: 'x', url: `https://x.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`, label: 'Share on X' },
+    { type: 'linkedin', url: `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`, label: 'Share on LinkedIn' },
+    { type: 'facebook', url: `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`, label: 'Share on Facebook' },
+    { type: 'whatsapp', url: `https://api.whatsapp.com/send?text=${pageTitle}%20${pageUrl}`, label: 'Share on WhatsApp' },
+    { type: 'email', url: `mailto:?subject=${pageTitle}&body=Check this out: ${pageUrl}`, label: 'Share via Email' },
+  ];
+
+  socialLinks.forEach((link) => {
+    const btn = document.createElement('a');
+    btn.href = link.url;
+    btn.className = `share-btn share-${link.type}`;
+    btn.target = '_blank';
+    btn.setAttribute('aria-label', link.label);
+    btn.innerHTML = `<span class="icon icon-${link.type}"></span>`;
+    shareButtons.append(btn);
+  });
+
+  // Copy Link Button
+  const copyBtn = document.createElement('a');
+  copyBtn.className = 'share-btn share-copy';
+  copyBtn.href = '#';
+  copyBtn.setAttribute('role', 'button');
+  copyBtn.setAttribute('aria-label', 'Copy Link');
+  copyBtn.innerHTML = '<span class="icon icon-copy"></span>';
+  copyBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    navigator.clipboard.writeText(window.location.href);
+    showToast('Link copied');
+  });
+  shareButtons.append(copyBtn);
+
+  decorateIcons(shareButtons);
+  shareWrapper.append(shareButtons);
+  actions.append(shareWrapper);
 
   // Adobe Red Logo (Text or Icon)
   const logo = document.createElement('div');
@@ -210,4 +261,21 @@ export default async function decorate(block) {
 
   container.append(metaContainer);
   block.append(container);
+}
+
+function showToast(message) {
+  const toast = document.createElement('div');
+  toast.className = 'toast-notification';
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  // Trigger animation
+  requestAnimationFrame(() => {
+    toast.classList.add('show');
+  });
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
 }

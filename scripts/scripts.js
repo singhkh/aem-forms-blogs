@@ -13,6 +13,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  getMetadata,
 } from './aem.js';
 
 /**
@@ -210,6 +211,18 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
+  // Analytics: Initialize Data Layer
+  window.adobeDataLayer = window.adobeDataLayer || [];
+  window.adobeDataLayer.push({
+    event: 'page-loaded',
+    page: {
+      url: window.location.href,
+      title: document.title,
+      lastModified: document.lastModified,
+      template: getMetadata('template'),
+    },
+  });
+
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
