@@ -84,7 +84,7 @@
 .blog-actions {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
 }
 
 
@@ -92,11 +92,11 @@
 .subscribe-button {
   background-color: var(--adobe-red);
   color: white !important;
-  font-weight: 700;
-  padding: 8px 20px;
+  font-weight: 600;
+  padding: 6px 16px;
   border-radius: 20px;
   text-decoration: none !important;
-  font-size: 14px;
+  font-size: 13px;
   transition: background-color 0.2s ease;
 }
 
@@ -117,8 +117,8 @@
 }
 
 .share-label {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 400;
   color: var(--text-color-secondary);
 }
 
@@ -135,6 +135,7 @@
   height: 24px;
   color: var(--text-color-secondary);
   background: none;
+  opacity: 0.85;
   border: none;
   padding: 0;
   cursor: pointer;
