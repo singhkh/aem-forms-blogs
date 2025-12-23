@@ -87,31 +87,7 @@
   gap: 24px;
 }
 
-.adobe-red-logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--text-color);
-  letter-spacing: 0.5px;
-}
 
-.adobe-red-logo .icon-adobe-red {
-  display: block;
-  width: 20px;
-  height: 20px;
-  background-color: var(--adobe-red);
-
-  /* Placeholder simple square icon */
-
-  /* If real icon exists, background-image logic applies */
-  mask: url('/icons/adobe-red.svg') no-repeat center;
-}
-
-.logo-text strong {
-  color: var(--adobe-red);
-}
 
 .subscribe-button {
   background-color: var(--adobe-red);
@@ -142,13 +118,13 @@
 
 .share-label {
   font-size: 14px;
-  font-weight: 700;
-  color: var(--text-color);
+  font-weight: 500;
+  color: var(--text-color-secondary);
 }
 
 .share-buttons {
   display: flex;
-  gap: 12px;
+  gap: 8px;
 }
 
 .share-btn {
@@ -157,7 +133,7 @@
   justify-content: center;
   width: 24px;
   height: 24px;
-  color: var(--text-color);
+  color: var(--text-color-secondary);
   background: none;
   border: none;
   padding: 0;

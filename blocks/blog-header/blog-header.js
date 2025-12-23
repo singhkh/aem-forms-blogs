@@ -218,7 +218,7 @@ export default async function decorate(block) {
 
   const shareLabel = document.createElement('span');
   shareLabel.className = 'share-label';
-  shareLabel.textContent = 'Share:';
+  shareLabel.textContent = 'Share';
   shareWrapper.append(shareLabel);
 
   const shareButtons = document.createElement('div');
@@ -263,13 +263,7 @@ export default async function decorate(block) {
   shareWrapper.append(shareButtons);
   actions.append(shareWrapper);
 
-  // Adobe Red Logo (Text or Icon)
-  const logo = document.createElement('div');
-  logo.className = 'adobe-red-logo';
-  // Use SVG or Text relative to design. Mock has "Adobe Red" + Icon.
-  // We'll use a simple text/icon combo for now.
-  logo.innerHTML = '<span class="icon icon-adobe-red"></span> <span class="logo-text">ADOBE <strong>RED</strong></span>';
-  actions.append(logo);
+
 
   // Subscribe Button
   const subscribeBtn = document.createElement('a');
